@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="title.advertisement_list">
+        <source>title.advertisement_list</source>
+        <target>Advertisements</target>
+      </trans-unit>
+      <trans-unit id="message.empty_list">
+        <source>message.empty_list</source>
+        <target>No advertisements found</target>
+      </trans-unit>
+      <trans-unit id="label.id">
+        <source>label.id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="label.name">
+        <source>label.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="label.description">
+        <source>label.description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="label.price">
+        <source>label.price</source>
+        <target>Price</target>
+      </trans-unit>
+      <trans-unit id="label.location">
+        <source>label.location</source>
+        <target>Location</target>
+      </trans-unit>
+      <trans-unit id="label.date">
+        <source>label.date</source>
+        <target>Date posted</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
