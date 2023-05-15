@@ -6,6 +6,10 @@
         <source>title.advertisement_list</source>
         <target>Advertisements</target>
       </trans-unit>
+      <trans-unit id="title.advertisement_details">
+        <source>title.advertisement_details</source>
+        <target>Advertisement details</target>
+      </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
         <target>No advertisements found</target>
@@ -33,6 +37,18 @@
       <trans-unit id="label.date">
         <source>label.date</source>
         <target>Date posted</target>
+      </trans-unit>
+      <trans-unit id="label.actions">
+        <source>label.actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="action.view">
+        <source>action.view</source>
+        <target>View</target>
+      </trans-unit>
+      <trans-unit id="action.back_to_list">
+        <source>action.back_to_list</source>
+        <target>Go back</target>
       </trans-unit>
     </body>
   </file>

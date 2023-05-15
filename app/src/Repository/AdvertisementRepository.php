@@ -1,12 +1,19 @@
 <?php
 
+/**
+ * Advertisement repository.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Advertisement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class AdvertisementRepository.
+ *
  * @extends ServiceEntityRepository<Advertisement>
  *
  * @method Advertisement|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,11 +23,55 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class AdvertisementRepository extends ServiceEntityRepository
 {
+    /**
+     * Items per page.
+     *
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them in configuration files.
+     * See https://symfony.com/doc/current/best_practices.html#configuration
+     *
+     * @constant int
+     */
+    public const PAGINATOR_ITEMS_PER_PAGE = 10;
+
+    /**
+     * @param ManagerRegistry $registry Manager registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Advertisement::class);
     }
 
+    /**
+     * Query all records.
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->orderBy('advertisement.updatedAt', 'DESC');
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('task');
+    }
+
+    /**
+     * Save record.
+     *
+     * @param Advertisement $entity Advertisement entity
+     * @param bool $flush
+     * @return void
+     */
     public function save(Advertisement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -30,6 +81,13 @@ class AdvertisementRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Remove record.
+     *
+     * @param Advertisement $entity Advertisement entity
+     * @param bool $flush
+     * @return void
+     */
     public function remove(Advertisement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

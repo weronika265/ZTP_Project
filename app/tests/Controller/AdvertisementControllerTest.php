@@ -6,6 +6,7 @@
 
 namespace App\Tests\Controller;
 
+use App\Repository\AdvertisementRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -44,6 +45,23 @@ class AdvertisementControllerTest extends WebTestCase
                 $this->assertSelectorTextContains('html title', 'Ogłoszenia');
         //        $this->assertSelectorTextContains('html h1', 'XXX');
     }
+
+    /**
+     * Test advertisement route content.
+     */
+    public function testAdvertisementSingleRoute(): void
+    {
+        // given
+        $client = static::createClient();
+
+        // when
+        $client->request('GET', '/advertisement/1');
+        $resultHttpStatusCode = $client->getResponse()->getStatusCode();
+
+        // then
+        $this->assertEquals(200, $resultHttpStatusCode);
+    }
 }
 
-// porcjowanie wyników na stronie (show.html.twig) + testy serwisu (?)
+// Doctrine - relacje, Doctrine - optymalizacja zapytań, Warstwa serwisów + testy serwisu i paginacji (?)
+// nie dziala nic z Repository, bo zwraca 500 - to przez to, że testowanie bazy danych jest nieustawione i 500 przez to, że pusta?
