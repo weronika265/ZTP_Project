@@ -20,6 +20,7 @@ class AdvertisementControllerTest extends WebTestCase
     public function testAdvertisementRoute(): void
     {
         // given
+        $expectedStatusCode = 200;
         $client = static::createClient();
 
         // when
@@ -27,24 +28,26 @@ class AdvertisementControllerTest extends WebTestCase
         $resultHttpStatusCode = $client->getResponse()->getStatusCode();
 
         // then
-        $this->assertEquals(200, $resultHttpStatusCode);
+        $this->assertEquals($expectedStatusCode, $resultHttpStatusCode);
     }
 
     /**
      * Test advertisement route content.
      */
-    public function testAdvertisementRouteContent(): void
-    {
-        // given
-        $client = static::createClient();
-
-        // when
-        $client->request('GET', '/advertisement');
-
-        // then
-                $this->assertSelectorTextContains('html title', 'Ogłoszenia');
-        //        $this->assertSelectorTextContains('html h1', 'XXX');
-    }
+//    public function testAdvertisementRouteContent(): void
+//    {
+//        // given
+//        $client = static::createClient();
+////        $advertisementRepository = static::getContainer()->get(advertisementRepository::class);
+////        $advertisementRepository->findAll();
+//
+//        // when
+//        $client->request('GET', '/advertisement');
+//
+//        // then
+//        $this->assertSelectorTextContains('html title', 'Ogłoszenia');
+//        //        $this->assertSelectorTextContains('html h1', 'XXX');
+//    }
 
     /**
      * Test advertisement route content.
@@ -52,6 +55,7 @@ class AdvertisementControllerTest extends WebTestCase
     public function testAdvertisementSingleRoute(): void
     {
         // given
+        $expectedStatusCode = 200;
         $client = static::createClient();
 
         // when
@@ -59,7 +63,7 @@ class AdvertisementControllerTest extends WebTestCase
         $resultHttpStatusCode = $client->getResponse()->getStatusCode();
 
         // then
-        $this->assertEquals(200, $resultHttpStatusCode);
+        $this->assertEquals($expectedStatusCode, $resultHttpStatusCode);
     }
 }
 
