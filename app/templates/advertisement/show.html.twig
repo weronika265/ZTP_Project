@@ -20,6 +20,10 @@
             <dd>{{ advertisement.location }}</dd>
             <dt>{{ 'label.date'|trans }}</dt>
             <dd>{{ advertisement.date|format_date() }}</dd>
+            <dt>{{ 'label.category'|trans }}</dt>
+            <dd>{{ advertisement.category.name }}</dd>
+            <dt>{{ 'label.advertiser'|trans }}</dt>
+            <dd>{{ advertisement.advertiser.email }}</dd>
         </dl>
         <p>
             <a href="{{ url('advertisement_index') }}" title="{{ 'action.back_to_list'|trans }}">

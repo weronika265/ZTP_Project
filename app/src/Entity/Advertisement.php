@@ -22,7 +22,7 @@ class Advertisement
     /**
      * Primary key.
      *
-     * @var int|null
+     * @var int|null Id
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,7 +32,7 @@ class Advertisement
     /**
      * Name of ad.
      *
-     * @var string|null
+     * @var string|null Name
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $name = null;
@@ -40,7 +40,7 @@ class Advertisement
     /**
      * Description.
      *
-     * @var string|null
+     * @var string|null Description
      */
     #[ORM\Column(type: 'string', length: 2000)]
     private ?string $description = null;
@@ -48,14 +48,15 @@ class Advertisement
     /**
      * Price.
      *
-     * @var string|null
+     * @var string|null Price
      */
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $price = null;
 
     /**
      * Location.
-     * @var string|null
+     *
+     * @var string|null Location
      */
     #[ORM\Column(type: 'string', length: 45)]
     private ?string $location = null;
@@ -63,7 +64,7 @@ class Advertisement
     /**
      * Date.
      *
-     * @var \DateTimeInterface|null
+     * @var \DateTimeInterface|null Date
      */
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
@@ -71,15 +72,33 @@ class Advertisement
     /**
      * Is active.
      *
-     * @var bool|null
+     * @var bool|null Is active
      */
     #[ORM\Column]
     private ?bool $is_active = null;
 
     /**
+     * Category.
+     *
+     * @var \App\Entity\Category|null Category entity
+     */
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
+    /**
+     * Advertiser.
+     *
+     * @var \App\Entity\Advertiser|null Advertiser entity
+     */
+    #[ORM\ManyToOne(targetEntity: Advertiser::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Advertiser $advertiser = null;
+
+    /**
      * Getter for Id.
      *
-     * @return int|null
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -89,7 +108,7 @@ class Advertisement
     /**
      * Getter for name.
      *
-     * @return string|null
+     * @return string|null Name
      */
     public function getName(): ?string
     {
@@ -109,7 +128,7 @@ class Advertisement
     /**
      * Getter for description.
      *
-     * @return string|null
+     * @return string|null Description
      */
     public function getDescription(): ?string
     {
@@ -129,7 +148,7 @@ class Advertisement
     /**
      * Getter for price.
      *
-     * @return string|null
+     * @return string|null Price
      */
     public function getPrice(): ?string
     {
@@ -149,7 +168,7 @@ class Advertisement
     /**
      * Getter for location.
      *
-     * @return string|null
+     * @return string|null Location
      */
     public function getLocation(): ?string
     {
@@ -169,7 +188,7 @@ class Advertisement
     /**
      * Getter for date.
      *
-     * @return \DateTimeInterface|null
+     * @return \DateTimeInterface|null Date
      */
     public function getDate(): ?\DateTimeInterface
     {
@@ -189,7 +208,7 @@ class Advertisement
     /**
      * Getter for is active.
      *
-     * @return bool|null
+     * @return bool|null Is active
      */
     public function isIsActive(): ?bool
     {
@@ -204,5 +223,45 @@ class Advertisement
     public function setIsActive(bool $is_active): void
     {
         $this->is_active = $is_active;
+    }
+
+    /**
+     * Getter for Category.
+     *
+     * @return Category|null Category entity
+     */
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    /**
+     * Setter for Category.
+     *
+     * @param Category|null $category Category entity
+     */
+    public function setCategory(?Category $category): void
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * Getter for Advertiser.
+     *
+     * @return Advertiser|null Advertiser entity
+     */
+    public function getAdvertiser(): ?Advertiser
+    {
+        return $this->advertiser;
+    }
+
+    /**
+     * Setter for Advertiser.
+     *
+     * @param Advertiser|null $advertiser Advertiser entity
+     */
+    public function setAdvertiser(?Advertiser $advertiser): void
+    {
+        $this->advertiser = $advertiser;
     }
 }

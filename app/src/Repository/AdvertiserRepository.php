@@ -1,39 +1,28 @@
 <?php
 
 /**
- * Advertisement repository.
+ * Advertiser repository.
  */
 
 namespace App\Repository;
 
-use App\Entity\Advertisement;
+use App\Entity\Advertiser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class AdvertisementRepository.
+ * Class AdvertiserRepository.
  *
- * @extends ServiceEntityRepository<Advertisement>
+ * @extends ServiceEntityRepository<Advertiser>
  *
- * @method Advertisement|null find($id, $lockMode = null, $lockVersion = null)
- * @method Advertisement|null findOneBy(array $criteria, array $orderBy = null)
- * @method Advertisement[]    findAll()
- * @method Advertisement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Advertiser|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Advertiser|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Advertiser[]    findAll()
+ * @method Advertiser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdvertisementRepository extends ServiceEntityRepository
+class AdvertiserRepository extends ServiceEntityRepository
 {
-    /**
-     * Items per page.
-     *
-     * Use constants to define configuration options that rarely change instead
-     * of specifying them in configuration files.
-     * See https://symfony.com/doc/current/best_practices.html#configuration
-     *
-     * @constant int
-     */
-    public const PAGINATOR_ITEMS_PER_PAGE = 10;
-
     /**
      * Constructor.
      *
@@ -41,7 +30,7 @@ class AdvertisementRepository extends ServiceEntityRepository
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Advertisement::class);
+        parent::__construct($registry, Advertiser::class);
     }
 
     /**
@@ -52,14 +41,10 @@ class AdvertisementRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-//            TODO: poprawić to, zobaczyć czy jest ok
-            ->select(
-                'partial advertisement.{id, name, description, price, location, date, is_active}',
-                'partial advertiser.{id, email, phone, name}',
-                'partial category.{id, name}'
-            )
-            ->join('advertisement.advertiser', 'advertiser')
-            ->orderBy('advertisement.date', 'DESC');
+            //            TODO: poprawić to, zobaczyć czy jest ok
+            ->select('advertiser', 'partial advertisement.{id}')
+            ->join('advertiser.advertisement', 'advertisement')
+            ->orderBy('advertiser.email', 'DESC');
     }
 
     /**
@@ -77,11 +62,9 @@ class AdvertisementRepository extends ServiceEntityRepository
     /**
      * Save record.
      *
-     * @param Advertisement $entity Advertisement entity
-     * @param bool $flush
-     * @return void
+     * @param Advertiser $entity Advertiser entity
      */
-    public function save(Advertisement $entity, bool $flush = false): void
+    public function save(Advertiser $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -93,11 +76,9 @@ class AdvertisementRepository extends ServiceEntityRepository
     /**
      * Remove record.
      *
-     * @param Advertisement $entity Advertisement entity
-     * @param bool $flush
-     * @return void
+     * @param Advertiser $entity Advertiser entity
      */
-    public function remove(Advertisement $entity, bool $flush = false): void
+    public function remove(Advertiser $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -107,7 +88,7 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Advertisement[] Returns an array of Advertisement objects
+//     * @return Advertiser[] Returns an array of Advertiser objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -121,7 +102,7 @@ class AdvertisementRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Advertisement
+//    public function findOneBySomeField($value): ?Advertiser
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

@@ -7,9 +7,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
-use Faker\Generator;
 
 /**
  * Class CategoryFixtures.
@@ -17,27 +14,20 @@ use Faker\Generator;
 class CategoryFixtures extends AbstractBaseFixtures
 {
     /**
-     * Faker.
-     */
-    protected Generator $faker;
-
-    /**
-     * Persistence object manager.
-     */
-    protected ObjectManager $manager;
-
-    /**
-     * Load.
+     * Load data.
+     *
+     * @psalm-suppress PossiblyNullReference
+     * @psalm-suppress UnusedClosureParam
      */
     public function loadData(): void
     {
-        $this->faker = Factory::create();
-
-        for ($i = 0; $i < 3; ++$i) {
+        $this->createMany(5, 'categories', function (int $i) {
             $category = new Category();
-            $category->setName($this->faker->name);
+            $category->setName($this->faker->unique()->name);
             $this->manager->persist($category);
-        }
+
+            return $category;
+        });
 
         $this->manager->flush();
     }

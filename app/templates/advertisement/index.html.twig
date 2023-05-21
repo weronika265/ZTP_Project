@@ -6,28 +6,38 @@
 
 {% block body %}
     <h1>{{ 'title.advertisement_list'|trans }}</h1>
-    {% if advertisements is defined and advertisements|length %}
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ 'label.id'|trans }}</th>
-                <th>{{ 'label.name'|trans }}</th>
-                <th>{{ 'label.description'|trans }}</th>
-                <th>{{ 'label.price'|trans }}</th>
-                <th>{{ 'label.location'|trans }}</th>
-                <th>{{ 'label.date'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'advertisement.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.name'|trans, 'advertisement.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'advertisement.description') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.price'|trans, 'advertisement.price') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.location'|trans, 'advertisement.location') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.date'|trans, 'advertisement.date') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.advertiser'|trans, 'advertiser.email') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for advertisement in advertisements %}
+            {% for advertisement in pagination.items %}
                 <tr>
                     <td>{{ advertisement.id }}</td>
-                    <td>{{ advertisement.name}}</td>
+                    <td>{{ advertisement.name }}</td>
                     <td>{{ advertisement.description }}</td>
                     <td>{{ advertisement.price }}</td>
                     <td>{{ advertisement.location }}</td>
                     <td>{{ advertisement.date|format_date() }}</td>
+                    <td>{{ advertisement.category.name }}</td>
+                    <td>{{ advertisement.advertiser.email }}</td>
+                    {# TODO: Jeśli istnieje advertisement.advertiser.name to też wstawić #}
                     <td>
                         <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
@@ -37,6 +47,11 @@
             {% endfor %}
             </tbody>
         </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
     {% else %}
         <p>
             {{ 'message.empty_list'|trans }}

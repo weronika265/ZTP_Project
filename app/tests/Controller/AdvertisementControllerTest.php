@@ -6,7 +6,6 @@
 
 namespace App\Tests\Controller;
 
-use App\Repository\AdvertisementRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -34,20 +33,17 @@ class AdvertisementControllerTest extends WebTestCase
     /**
      * Test advertisement route content.
      */
-//    public function testAdvertisementRouteContent(): void
-//    {
-//        // given
-//        $client = static::createClient();
-////        $advertisementRepository = static::getContainer()->get(advertisementRepository::class);
-////        $advertisementRepository->findAll();
-//
-//        // when
-//        $client->request('GET', '/advertisement');
-//
-//        // then
-//        $this->assertSelectorTextContains('html title', 'Ogłoszenia');
-//        //        $this->assertSelectorTextContains('html h1', 'XXX');
-//    }
+    public function testAdvertisementRouteContent(): void
+    {
+        // given
+        $client = static::createClient();
+
+        // when
+        $client->request('GET', '/advertisement');
+
+        // then
+        $this->assertSelectorTextContains('html title', 'Ogłoszenia');
+    }
 
     /**
      * Test advertisement route content.
@@ -57,6 +53,7 @@ class AdvertisementControllerTest extends WebTestCase
         // given
         $expectedStatusCode = 200;
         $client = static::createClient();
+        //        dodać element do bazy danych do przetestowania
 
         // when
         $client->request('GET', '/advertisement/1');
@@ -67,5 +64,4 @@ class AdvertisementControllerTest extends WebTestCase
     }
 }
 
-// Doctrine - relacje, Doctrine - optymalizacja zapytań, Warstwa serwisów + testy serwisu i paginacji (?)
-// nie dziala nic z Repository, bo zwraca 500 - to przez to, że testowanie bazy danych jest nieustawione i 500 przez to, że pusta?
+// TODO: TESTY!!

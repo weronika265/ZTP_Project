@@ -8,6 +8,7 @@ namespace App\Entity;
 
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class Category.
@@ -16,10 +17,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ORM\Table('categories')]
+#[ORM\UniqueConstraint(name: 'uq_categories_name', columns: ['name'])]
+#[UniqueEntity(fields: ['name'])]
 class Category
 {
     /**
      * Primary key.
+     *
+     * @var int|null Id
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,6 +33,8 @@ class Category
 
     /**
      * Name.
+     *
+     * @var string|null Name
      */
     #[ORM\Column(type: 'string', length: 45)]
     private ?string $name = null;
@@ -35,7 +42,7 @@ class Category
     /**
      * Getter for Id.
      *
-     * @return int|null
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -45,7 +52,7 @@ class Category
     /**
      * Getter for name.
      *
-     * @return string|null
+     * @return string|null Name
      */
     public function getName(): ?string
     {

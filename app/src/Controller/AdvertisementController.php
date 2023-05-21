@@ -8,10 +8,12 @@ namespace App\Controller;
 
 use App\Entity\Advertisement;
 use App\Repository\AdvertisementRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-// DODAĆ PAGINACJĘ W KONTROLERZE I W INDEX
+
 /**
  * Class AdvertisementController.
  */
@@ -21,21 +23,27 @@ class AdvertisementController extends AbstractController
     /**
      * Index acton.
      *
+     * @param Request                 $request                 HTTP Request
+     * @param AdvertisementRepository $advertisementRepository Advertisement repository
+     * @param PaginatorInterface      $paginator               Paginator
+     *
      * @return Response HTTP response
      */
     #[Route(
         name: 'advertisement_index',
         methods: 'GET'
     )]
-    public function index(AdvertisementRepository $advertisementRepository): Response
+    public function index(Request $request, AdvertisementRepository $advertisementRepository, PaginatorInterface $paginator): Response
     {
-        // testy wyświetlania zawartości na stronie to bardziej w repozytorium?
-        // testy się failują jak jest odkomentowane
-        $advertisements = $advertisementRepository->findAll();
+        $pagination = $paginator->paginate(
+            $advertisementRepository->findAll(),
+            $request->query->getInt('page', 1),
+            AdvertisementRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
 
         return $this->render(
             'advertisement/index.html.twig',
-            ['advertisements' => $advertisements]
+            ['pagination' => $pagination]
         );
     }
 

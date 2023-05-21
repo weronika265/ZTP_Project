@@ -1,12 +1,19 @@
 <?php
 
+/**
+ * Category repository.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class CategoryRepository.
+ *
  * @extends ServiceEntityRepository<Category>
  *
  * @method Category|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,11 +23,47 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoryRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
     }
 
+    /**
+     * Query all records.
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            //            TODO: poprawić to, zobaczyć czy jest ok
+            ->select('category', 'partial advertisement.{id}')
+            ->join('category.advertisement', 'advertisement')
+            ->orderBy('category.name', 'DESC');
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('advertisement');
+    }
+
+    /**
+     * Save record.
+     *
+     * @param Category $entity Category entity
+     */
     public function save(Category $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -30,6 +73,11 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Remove record.
+     *
+     * @param Category $entity Category entity
+     */
     public function remove(Category $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
