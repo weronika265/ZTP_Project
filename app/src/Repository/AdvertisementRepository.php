@@ -52,13 +52,13 @@ class AdvertisementRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-//            TODO: poprawić to, zobaczyć czy jest ok
-            ->select(
-                'partial advertisement.{id, name, description, price, location, date, is_active}',
-                'partial advertiser.{id, email, phone, name}',
-                'partial category.{id, name}'
-            )
-            ->join('advertisement.advertiser', 'advertiser')
+//            TODO: cos jest nie tak
+//            ->select(
+//                'partial advertisement.{id, name, description, price, location, date, is_active}',
+//                'partial advertiser.{id, email, phone, name}',
+//                'partial category.{id, name}'
+//            )
+//            ->join('advertisement.advertiser', 'advertiser')
             ->orderBy('advertisement.date', 'DESC');
     }
 
@@ -78,8 +78,6 @@ class AdvertisementRepository extends ServiceEntityRepository
      * Save record.
      *
      * @param Advertisement $entity Advertisement entity
-     * @param bool $flush
-     * @return void
      */
     public function save(Advertisement $entity, bool $flush = false): void
     {
@@ -94,8 +92,6 @@ class AdvertisementRepository extends ServiceEntityRepository
      * Remove record.
      *
      * @param Advertisement $entity Advertisement entity
-     * @param bool $flush
-     * @return void
      */
     public function remove(Advertisement $entity, bool $flush = false): void
     {
@@ -131,3 +127,5 @@ class AdvertisementRepository extends ServiceEntityRepository
 //        ;
 //    }
 }
+
+// TODO: w jakis sposob przetestowac repo i entity

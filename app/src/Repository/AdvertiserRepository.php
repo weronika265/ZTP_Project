@@ -41,9 +41,9 @@ class AdvertiserRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            //            TODO: poprawić to, zobaczyć czy jest ok
-            ->select('advertiser', 'partial advertisement.{id}')
-            ->join('advertiser.advertisement', 'advertisement')
+//            TODO: cos jest nie tak
+//            ->select('advertiser', 'partial advertisement.{id}')
+//            ->join('advertiser.advertisement', 'advertisement')
             ->orderBy('advertiser.email', 'DESC');
     }
 

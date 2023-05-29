@@ -7,8 +7,8 @@
 namespace App\Controller;
 
 use App\Entity\Advertisement;
-use App\Repository\AdvertisementRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\AdvertisementService;
+use App\Service\AdvertisementServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,11 +21,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdvertisementController extends AbstractController
 {
     /**
+     * Advertisement service.
+     */
+    private AdvertisementServiceInterface $advertisementService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(AdvertisementServiceInterface $advertisementService)
+    {
+        $this->advertisementService = $advertisementService;
+    }
+
+    /**
      * Index acton.
      *
-     * @param Request                 $request                 HTTP Request
-     * @param AdvertisementRepository $advertisementRepository Advertisement repository
-     * @param PaginatorInterface      $paginator               Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
@@ -33,12 +44,10 @@ class AdvertisementController extends AbstractController
         name: 'advertisement_index',
         methods: 'GET'
     )]
-    public function index(Request $request, AdvertisementRepository $advertisementRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $advertisementRepository->findAll(),
-            $request->query->getInt('page', 1),
-            AdvertisementRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->advertisementService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render(
