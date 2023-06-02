@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.advertiser_details'|trans({'%id%': advertiser.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.advertiser_details'|trans({'%id%': advertiser.id|default('')}) }}</h1>
+    {% if advertiser is defined and advertiser|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ advertiser.id }}</dd>
+            <dt>{{ 'label.email'|trans }}</dt>
+            <dd>{{ advertiser.email}}</dd>
+            <dt>{{ 'label.phone'|trans }}</dt>
+            <dd>{{ advertiser.phone }}</dd>
+            <dt>{{ 'label.name'|trans }}</dt>
+            <dd>{{ advertiser.name }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('advertiser_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

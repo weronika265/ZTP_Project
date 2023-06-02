@@ -24,6 +24,17 @@ use Doctrine\Persistence\ManagerRegistry;
 class AdvertiserRepository extends ServiceEntityRepository
 {
     /**
+     * Items per page.
+     *
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them in configuration files.
+     * See https://symfony.com/doc/current/best_practices.html#configuration
+     *
+     * @constant int
+     */
+    public const PAGINATOR_ITEMS_PER_PAGE = 10;
+
+    /**
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
@@ -56,7 +67,7 @@ class AdvertiserRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('advertisement');
+        return $queryBuilder ?? $this->createQueryBuilder('advertiser');
     }
 
     /**

@@ -51,7 +51,7 @@ class AdvertisementControllerTest extends WebTestCase
     }
 
     /**
-     * Test advertisement route content.
+     * Test '/advertisement' route content.
      */
     public function testAdvertisementRouteContent(): void
     {
@@ -64,7 +64,7 @@ class AdvertisementControllerTest extends WebTestCase
     }
 
     /**
-     * Test advertisement route content.
+     * Test single advertisement route content.
      */
     public function testAdvertisementSingleRoute(): void
     {

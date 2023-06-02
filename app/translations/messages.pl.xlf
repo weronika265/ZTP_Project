@@ -46,6 +46,30 @@
         <source>label.advertiser</source>
         <target>Sprzedający</target>
       </trans-unit>
+      <trans-unit id="title.category_list">
+        <source>title.category_list</source>
+        <target>Kategorie</target>
+      </trans-unit>
+      <trans-unit id="title.category_details">
+        <source>title.category_details</source>
+        <target>Szczegóły kategorii #%id%</target>
+      </trans-unit>
+      <trans-unit id="title.advertiser_list">
+        <source>title.advertiser_list</source>
+        <target>Sprzedający</target>
+      </trans-unit>
+      <trans-unit id="title.advertiser_details">
+        <source>title.advertiser_details</source>
+        <target>Szczegóły sprzedającego #%id%</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="label.phone">
+        <source>label.phone</source>
+        <target>Telefon</target>
+      </trans-unit>
       <trans-unit id="label.actions">
         <source>label.actions</source>
         <target>Akcje</target>
