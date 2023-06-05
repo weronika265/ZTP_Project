@@ -10,6 +10,22 @@
         <source>title.advertisement_details</source>
         <target>Szczegóły ogłoszenia #%id%</target>
       </trans-unit>
+      <trans-unit id="title.advertisement_create">
+        <source>title.advertisement_create</source>
+        <target>Utwórz ogłoszenie</target>
+      </trans-unit>
+      <trans-unit id="title.advertisement_edit">
+        <source>title.advertisement_edit</source>
+        <target>Edytuj ogłoszenie</target>
+      </trans-unit>
+      <trans-unit id="title.advertisement_delete">
+        <source>title.advertisement_delete</source>
+        <target>Usuń ogłoszenie</target>
+      </trans-unit>
+      <trans-unit id="action_advertisement_create">
+        <source>action_advertisement_create</source>
+        <target>Utwórz nowe ogłoszenie</target>
+      </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
         <target>Nie znaleziono ogłoszeń</target>
@@ -54,6 +70,22 @@
         <source>title.category_details</source>
         <target>Szczegóły kategorii #%id%</target>
       </trans-unit>
+      <trans-unit id="title.category_create">
+        <source>title.category_create</source>
+        <target>Utwórz kategorię</target>
+      </trans-unit>
+      <trans-unit id="title.category_edit">
+        <source>title.category_edit</source>
+        <target>Edytuj kategorię</target>
+      </trans-unit>
+      <trans-unit id="title.category_delete">
+        <source>title.category_delete</source>
+        <target>Usuń kategorię</target>
+      </trans-unit>
+      <trans-unit id="action_category_create">
+        <source>action_category_create</source>
+        <target>Utwórz nową kategorię</target>
+      </trans-unit>
       <trans-unit id="title.advertiser_list">
         <source>title.advertiser_list</source>
         <target>Sprzedający</target>
@@ -77,6 +109,18 @@
       <trans-unit id="action.view">
         <source>action.view</source>
         <target>Wyświetl</target>
+      </trans-unit>
+      <trans-unit id="action.edit">
+        <source>action.edit</source>
+        <target>Edytuj</target>
+      </trans-unit>
+      <trans-unit id="action.save">
+        <source>action.save</source>
+        <target>Zapisz</target>
+      </trans-unit>
+      <trans-unit id="action.delete">
+        <source>action.delete</source>
+        <target>Usuń</target>
       </trans-unit>
       <trans-unit id="action.back_to_list">
         <source>action.back_to_list</source>

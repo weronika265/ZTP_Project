@@ -40,6 +40,17 @@ class Category
     private ?string $name = null;
 
     /**
+     * Slug.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(type: 'string', length: 45)]
+//    #[Gedmo\Slug(fields: ['name'])]
+//    private ?string $slug = null;
+    private ?string $slug = 'test';
+//    TODO: fix slug
+
+    /**
      * Getter for Id.
      *
      * @return int|null Id
@@ -67,5 +78,25 @@ class Category
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * Getter for slug.
+     *
+     * @return string|null Slug
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Setter for slug.
+     *
+     * @param string $slug Slug
+     */
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
     }
 }

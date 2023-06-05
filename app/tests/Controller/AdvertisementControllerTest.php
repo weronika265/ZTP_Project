@@ -79,6 +79,19 @@ class AdvertisementControllerTest extends WebTestCase
         // then
         $this->assertEquals($expectedStatusCode, $resultHttpStatusCode);
     }
+
+    /**
+     * Test advertisement page single pagination items count.
+     */
+    public function testAdvertisementPagination(): void
+    {
+        // given
+        // when
+        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE);
+
+        // then
+        $this->assertCount(10, $crawler->filter('tbody tr'));
+    }
 }
 
 // TODO: TESTY!!

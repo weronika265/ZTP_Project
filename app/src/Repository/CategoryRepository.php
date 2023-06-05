@@ -71,32 +71,54 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Save record.
+     * Save entity.
      *
-     * @param Category $entity Category entity
+     * @param Category $category Category entity
      */
-    public function save(Category $entity, bool $flush = false): void
+    public function save(Category $category): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($category);
+        $this->_em->flush();
     }
 
     /**
-     * Remove record.
+     * Delete entity.
      *
-     * @param Category $entity Category entity
+     * @param Category $category Category entity
      */
-    public function remove(Category $entity, bool $flush = false): void
+    public function delete(Category $category): void
     {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->remove($category);
+        $this->_em->flush();
     }
+
+//    /**
+//     * Save record.
+//     *
+//     * @param Category $entity Category entity
+//     */
+//    public function save(Category $entity, bool $flush = false): void
+//    {
+//        $this->getEntityManager()->persist($entity);
+//
+//        if ($flush) {
+//            $this->getEntityManager()->flush();
+//        }
+//    }
+//
+//    /**
+//     * Remove record.
+//     *
+//     * @param Category $entity Category entity
+//     */
+//    public function remove(Category $entity, bool $flush = false): void
+//    {
+//        $this->getEntityManager()->remove($entity);
+//
+//        if ($flush) {
+//            $this->getEntityManager()->flush();
+//        }
+//    }
 
 //    /**
 //     * @return Category[] Returns an array of Category objects

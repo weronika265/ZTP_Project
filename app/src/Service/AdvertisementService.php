@@ -6,6 +6,7 @@
 
 namespace App\Service;
 
+use App\Entity\Advertisement;
 use App\Repository\AdvertisementRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -38,6 +39,26 @@ class AdvertisementService implements AdvertisementServiceInterface
     {
         $this->advertisementRepository = $advertisementRepository;
         $this->paginator = $paginator;
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Advertisement $advertisement Advertisement entity
+     */
+    public function save(Advertisement $advertisement): void
+    {
+        $this->advertisementRepository->save($advertisement);
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Advertisement $advertisement Advertisement entity
+     */
+    public function delete(Advertisement $advertisement): void
+    {
+        $this->advertisementRepository->delete($advertisement);
     }
 
     /**

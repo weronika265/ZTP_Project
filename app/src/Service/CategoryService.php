@@ -6,6 +6,7 @@
 
 namespace App\Service;
 
+use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -35,6 +36,26 @@ class CategoryService implements CategoryServiceInterface
     {
         $this->categoryRepository = $categoryRepository;
         $this->paginator = $paginator;
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Category $category Category entity
+     */
+    public function save(Category $category): void
+    {
+        $this->categoryRepository->save($category);
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Category $category Category entity
+     */
+    public function delete(Category $category): void
+    {
+        $this->categoryRepository->delete($category);
     }
 
     /**

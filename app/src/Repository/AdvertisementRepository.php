@@ -56,7 +56,7 @@ class AdvertisementRepository extends ServiceEntityRepository
 //            ->select(
 //                'partial advertisement.{id, name, description, price, location, date, is_active}',
 //                'partial advertiser.{id, email, phone, name}',
-//                'partial category.{id, name}'
+//                'partial advertisement.{id, name}'
 //            )
 //            ->join('advertisement.advertiser', 'advertiser')
             ->orderBy('advertisement.date', 'DESC');
@@ -75,32 +75,54 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * Save record.
+     * Save entity.
      *
-     * @param Advertisement $entity Advertisement entity
+     * @param Advertisement $advertisement Advertisement entity
      */
-    public function save(Advertisement $entity, bool $flush = false): void
+    public function save(Advertisement $advertisement): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($advertisement);
+        $this->_em->flush();
     }
 
     /**
-     * Remove record.
+     * Delete entity.
      *
-     * @param Advertisement $entity Advertisement entity
+     * @param Advertisement $advertisement Advertisement entity
      */
-    public function remove(Advertisement $entity, bool $flush = false): void
+    public function delete(Advertisement $advertisement): void
     {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->remove($advertisement);
+        $this->_em->flush();
     }
+
+//    /**
+//     * Save record.
+//     *
+//     * @param Advertisement $entity Advertisement entity
+//     */
+//    public function save(Advertisement $entity, bool $flush = false): void
+//    {
+//        $this->getEntityManager()->persist($entity);
+//
+//        if ($flush) {
+//            $this->getEntityManager()->flush();
+//        }
+//    }
+//
+//    /**
+//     * Remove record.
+//     *
+//     * @param Advertisement $entity Advertisement entity
+//     */
+//    public function remove(Advertisement $entity, bool $flush = false): void
+//    {
+//        $this->getEntityManager()->remove($entity);
+//
+//        if ($flush) {
+//            $this->getEntityManager()->flush();
+//        }
+//    }
 
 //    /**
 //     * @return Advertisement[] Returns an array of Advertisement objects
