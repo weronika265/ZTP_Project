@@ -106,7 +106,7 @@ class Advertisement
      *
      * @var \App\Entity\Advertiser|null Advertiser entity
      */
-    #[ORM\ManyToOne(targetEntity: Advertiser::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Advertiser::class, cascade: ['persist'], fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(Advertiser::class)]

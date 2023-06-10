@@ -1,43 +1,15 @@
 {#{% extends 'base.html.twig' %}#}
 
-{#{% block body %}#}
-{#    <div id="dropdown">#}
-{#        <div id="accountBar"><i class="bi bi-person-fill"></i>#}
-{#            {{ app.user.username }}#}
-{#        </div>#}
-{#        <div id="dropdownContent">#}
-{#            <a href="{{ url('user_show', {id: app.user.id}) }}">#}
-{#                {{ 'label_my_account'|trans }}#}
-{#            </a>#}
-{#            <a href="{{ url('app_logout') }}">#}
-{#                {{ 'label_logout'|trans }}#}
-{#            </a>#}
-{#        </div>#}
-{#    </div>#}
-
-{#    <div class="sidenav" style="padding-top: 25px;">#}
-{#        {% if (is_granted('IS_AUTHENTICATED_FULLY') and (is_granted('ROLE_ADMIN') == false) ) %}#}
-{#            <a href="{{ url('contact_index') }}"><i class="bi bi-people-fill"></i>#}
-{#                {{ 'label_contacts'|trans }}#}
-{#            </a>#}
-{#            <a href="{{ url('calendar_index') }}">#}
-{#                <i class="bi bi-calendar-date"></i>#}
-{#                {{ 'label_calendar'|trans }}#}
-{#            </a>#}
-{#            <a href="{{ url('event_index') }}"><i class="bi bi-calendar-event"></i>#}
-{#                {{ 'label_recent_upcoming_events'|trans }}#}
-{#            </a>#}
-{#        {% endif %}#}
-{#        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}#}
-{#            <a href="{{ url('user_index') }}"><i class="bi bi-person-lines-fill"></i>#}
-{#                {{ 'label_users'|trans }}#}
-{#            </a>#}
-{#            <a href="{{ url('category_index') }}"><i class="bi bi-bar-chart-steps"></i>#}
-{#                {{ 'label_categories'|trans }}#}
-{#            </a>#}
-{#            <a href="{{ url('tag_index') }}"><i class="bi bi-file-check"></i>#}
-{#                {{ 'label_tags'|trans }}#}
-{#            </a>#}
-{#        {% endif %}#}
-{#    </div>#}
-{#{% endblock %}#}
+{% block body %}
+    <div>
+        <a href="{{ url('advertisement_index') }}" title="{{ 'action.view_advertisement'|trans }}">
+            {{ 'action.view_advertisement'|trans }}
+        </a>
+        <a href="{{ url('category_index') }}" title="{{ 'action.view_category'|trans }}">
+            {{ 'action.view_category'|trans }}
+        </a>
+        <a href="{{ url('advertiser_index') }}" title="{{ 'action.view_advertiser'|trans }}">
+            {{ 'action.view_advertiser'|trans }}
+        </a>
+    </div>
+{% endblock %}

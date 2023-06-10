@@ -122,6 +122,14 @@
         <source>label.actions</source>
         <target>Akcje</target>
       </trans-unit>
+      <trans-unit id="label.login">
+        <source>label.login</source>
+        <target>Zaloguj się</target>
+      </trans-unit>
+      <trans-unit id="label.password">
+        <source>label.password</source>
+        <target>Hasło</target>
+      </trans-unit>
       <trans-unit id="action.view">
         <source>action.view</source>
         <target>Wyświetl</target>
@@ -141,6 +149,50 @@
       <trans-unit id="action.back_to_list">
         <source>action.back_to_list</source>
         <target>Powrót</target>
+      </trans-unit>
+      <trans-unit id="action.login">
+        <source>action.login</source>
+        <target>Zaloguj się</target>
+      </trans-unit>
+      <trans-unit id="action.logout">
+        <source>action.logout</source>
+        <target>Wyloguj się</target>
+      </trans-unit>
+      <trans-unit id="message.category_contains_tasks">
+        <source>message.category_contains_tasks</source>
+        <target>Niektóre ogłoszenia są powiązane z tą kategorią</target>
+      </trans-unit>
+      <trans-unit id="message.created_successfully">
+        <source>message.created_successfully</source>
+        <target>Utworzono poprawnie</target>
+      </trans-unit>
+      <trans-unit id="message.deleted_successfully">
+        <source>message.deleted_successfully</source>
+        <target>Usunięto poprawnie</target>
+      </trans-unit>
+      <trans-unit id="message.record_not_found">
+        <source>message.record_not_found</source>
+        <target>Nie znaleziono rekordu</target>
+      </trans-unit>
+      <trans-unit id="message.form_error">
+        <source>message.form_error</source>
+        <target>Błąd formularza</target>
+      </trans-unit>
+      <trans-unit id="message.login_as">
+        <source>message.login_as</source>
+        <target>Jesteś zalogowany jako </target>
+      </trans-unit>
+      <trans-unit id="action.view_advertisement">
+        <source>action.view_advertisement</source>
+        <target>Ogłoszenia</target>
+      </trans-unit>
+      <trans-unit id="action.view_category">
+        <source>action.view_category</source>
+        <target>Kategorie</target>
+      </trans-unit>
+      <trans-unit id="action.view_advertiser">
+        <source>action.view_advertiser</source>
+        <target>Sprzedający</target>
       </trans-unit>
     </body>
   </file>

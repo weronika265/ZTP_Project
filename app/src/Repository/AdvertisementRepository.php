@@ -84,6 +84,9 @@ class AdvertisementRepository extends ServiceEntityRepository
      */
     public function save(Advertisement $advertisement): void
     {
+        if (null == $advertisement->getId()) {
+            $advertisement->setIsActive(0);
+        }
         $this->_em->persist($advertisement);
         $this->_em->flush();
     }
@@ -118,6 +121,24 @@ class AdvertisementRepository extends ServiceEntityRepository
             ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * Get advertisements by category.
+     *
+     * @param Category $category
+     * @param \Doctrine\ORM\QueryBuilder $queryBuilder Query builder
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function getByCategory(Category $category, QueryBuilder $queryBuilder): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select(
+                'advertisement'
+            )
+            ->where('advertisement.category = :category')
+            ->setParameter(':category', $category);
     }
 
 //    /**

@@ -32,7 +32,7 @@
                     <td>{{ advertisement.id }}</td>
                     <td>{{ advertisement.name }}</td>
                     <td>{{ advertisement.description }}</td>
-                    <td>{{ advertisement.price }}</td>
+                    <td>{{ advertisement.price|format_currency('PLN') }}</td>
                     <td>{{ advertisement.location }}</td>
                     <td>{{ advertisement.date|format_date() }}</td>
                     <td>{{ advertisement.category.name }}</td>

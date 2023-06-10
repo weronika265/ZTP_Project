@@ -50,6 +50,7 @@ class AdvertisementService implements AdvertisementServiceInterface
         }
 
         $this->advertisementRepository->save($advertisement);
+//        TODO: nowe ogloszenie - is_active = 0, zmiana przez admina
     }
 
     /**

@@ -6,10 +6,10 @@
 namespace App\Form\Type;
 
 use App\Entity\Advertisement;
+use App\Entity\Advertiser;
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -54,6 +54,7 @@ class AdvertisementType extends AbstractType
             MoneyType::class,
             [
                 'label' => 'label.price',
+                'currency' => 'PLN',
             ]);
         //        TODO: change to display values correctly as in documentation
         $builder->add(
@@ -63,14 +64,6 @@ class AdvertisementType extends AbstractType
                 'label' => 'label.location',
                 'required' => true,
             ]);
-        //        $builder->add(
-        //            'date',
-        //            DateType::class,
-        //            [
-        //                'label' => 'label.date',
-        //                'required' => true,
-        //                'attr' => ['max_length' => 45],
-        //            ]);
         $builder->add(
             'category',
             EntityType::class,
@@ -80,10 +73,16 @@ class AdvertisementType extends AbstractType
                     return $category->getName();
                 },
                 'label' => 'label.category',
-                'placeholder' => 'label.none',
                 'required' => true,
             ]
         );
+
+        $builder->add(
+            'advertiser',
+            AdvertiserType::class
+        );
+
+        //        TODO: dodać advertiser
     }
 
     /**
