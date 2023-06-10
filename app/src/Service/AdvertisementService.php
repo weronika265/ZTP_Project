@@ -10,9 +10,6 @@ use App\Entity\Advertisement;
 use App\Repository\AdvertisementRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class AdvertisementService.
@@ -48,6 +45,10 @@ class AdvertisementService implements AdvertisementServiceInterface
      */
     public function save(Advertisement $advertisement): void
     {
+        if (null == $advertisement->getId()) {
+            $advertisement->setDate(new \DateTimeImmutable());
+        }
+
         $this->advertisementRepository->save($advertisement);
     }
 

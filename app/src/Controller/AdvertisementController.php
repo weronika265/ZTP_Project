@@ -102,8 +102,17 @@ class AdvertisementController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+//        TODO: ustaw advertiser + lekki offtop -> raczej nie trzeba formularzy advertiser?
+//        $user = $this->getUser();
+//        $task = new Task();
+//        $task->setAuthor($user);
+
         $advertisement = new Advertisement();
-        $form = $this->createForm(AdvertisementType::class, $advertisement);
+        $form = $this->createForm(
+            AdvertisementType::class,
+            $advertisement,
+            ['action' => $this->generateUrl('advertisement_create')]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

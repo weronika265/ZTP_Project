@@ -94,6 +94,22 @@
         <source>title.advertiser_details</source>
         <target>Szczegóły sprzedającego #%id%</target>
       </trans-unit>
+      <trans-unit id="title.advertiser_create">
+        <source>title.advertiser_create</source>
+        <target>Utwórz sprzedającego</target>
+      </trans-unit>
+      <trans-unit id="title.advertiser_edit">
+        <source>title.advertiser_edit</source>
+        <target>Edytuj sprzedającego</target>
+      </trans-unit>
+      <trans-unit id="title.advertiser_delete">
+        <source>title.advertiser_delete</source>
+        <target>Usuń sprzedającego</target>
+      </trans-unit>
+      <trans-unit id="action_advertiser_create">
+        <source>action_advertiser_create</source>
+        <target>Utwórz nowego sprzedającego</target>
+      </trans-unit>
       <trans-unit id="label.email">
         <source>label.email</source>
         <target>Email</target>

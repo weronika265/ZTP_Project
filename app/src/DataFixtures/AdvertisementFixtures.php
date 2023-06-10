@@ -32,16 +32,19 @@ class AdvertisementFixtures extends AbstractBaseFixtures implements DependentFix
             //            $advertisement->setPrice(rand(0, 10000000.00));
             $advertisement->setPrice(rand(0, 5000.00));
             $advertisement->setLocation($this->faker->city);
-            $advertisement->setDate($this->faker->dateTimeBetween('-30 days', '-1 days'));
+            $advertisement->setDate(
+                \DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days'))
+            );
             $advertisement->setIsActive(false);
 
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $advertisement->setCategory($category);
 
-            /** @var Advertiser $adveriser */
-            $adveriser = $this->getRandomReference('advertisers');
-            $advertisement->setAdvertiser($adveriser);
+            /** @var Advertiser $advertiser */
+            $advertiser = $this->getRandomReference('advertisers');
+            $advertisement->setAdvertiser($advertiser);
 
             return $advertisement;
         });

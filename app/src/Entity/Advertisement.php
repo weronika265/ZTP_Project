@@ -9,6 +9,7 @@ namespace App\Entity;
 use App\Repository\AdvertisementRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Advertisement.
@@ -35,6 +36,9 @@ class Advertisement
      * @var string|null Name
      */
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 255)]
     private ?string $name = null;
 
     /**
@@ -43,15 +47,20 @@ class Advertisement
      * @var string|null Description
      */
     #[ORM\Column(type: 'string', length: 2000)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 30, max: 2000)]
     private ?string $description = null;
 
     /**
      * Price.
      *
-     * @var string|null Price
+     * @var int|null Price
      */
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
-    private ?string $price = null;
+    //    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\PositiveOrZero]
+    private ?int $price = null;
 
     /**
      * Location.
@@ -59,15 +68,20 @@ class Advertisement
      * @var string|null Location
      */
     #[ORM\Column(type: 'string', length: 45)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 45)]
     private ?string $location = null;
 
     /**
-     * Date.
+     * Creation date.
      *
      * @var \DateTimeInterface|null Date
      */
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: 'datetime_immutable')]
+//    #[Assert\DateTime] -> to string, wywala blad
     private ?\DateTimeInterface $date = null;
+    // TODO: dac, zeby robilo auto
 
     /**
      * Is active.
@@ -84,6 +98,7 @@ class Advertisement
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
     private ?Category $category = null;
 
     /**
@@ -93,6 +108,8 @@ class Advertisement
      */
     #[ORM\ManyToOne(targetEntity: Advertiser::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type(Advertiser::class)]
     private ?Advertiser $advertiser = null;
 
     /**
@@ -148,9 +165,9 @@ class Advertisement
     /**
      * Getter for price.
      *
-     * @return string|null Price
+     * @return int|null Price
      */
-    public function getPrice(): ?string
+    public function getPrice(): ?int
     {
         return $this->price;
     }
@@ -158,9 +175,9 @@ class Advertisement
     /**
      * Setter for price.
      *
-     * @param string|null $price Price
+     * @param int|null $price Price
      */
-    public function setPrice(?string $price): void
+    public function setPrice(?int $price): void
     {
         $this->price = $price;
     }
@@ -186,9 +203,9 @@ class Advertisement
     }
 
     /**
-     * Getter for date.
+     * Getter for creation date.
      *
-     * @return \DateTimeInterface|null Date
+     * @return \DateTimeInterface|null Creation date
      */
     public function getDate(): ?\DateTimeInterface
     {
@@ -196,9 +213,9 @@ class Advertisement
     }
 
     /**
-     * Setter for date.
+     * Setter for creation date.
      *
-     * @param \DateTimeInterface $date Date
+     * @param \DateTimeInterface $date Cration date
      */
     public function setDate(\DateTimeInterface $date): void
     {

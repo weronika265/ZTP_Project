@@ -7,7 +7,10 @@
 namespace App\Repository;
 
 use App\Entity\Advertisement;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -94,6 +97,27 @@ class AdvertisementRepository extends ServiceEntityRepository
     {
         $this->_em->remove($advertisement);
         $this->_em->flush();
+    }
+
+    /**
+     * Count advertisements by category.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of advertisements in category
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByCategory(Category $category): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('advertisement.id'))
+            ->where('advertisement.category = :category')
+            ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
 //    /**

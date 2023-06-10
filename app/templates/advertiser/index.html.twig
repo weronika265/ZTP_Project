@@ -33,6 +33,12 @@
                         <a href="{{ url('advertiser_show', {id: advertiser.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
+                        <a href="{{ url('advertiser_edit', {id: advertiser.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('advertiser_delete', {id: advertiser.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
@@ -48,4 +54,9 @@
             {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
+
+    <a class="btn btn-outline-primary" href="{{ url('advertiser_create') }}" title="{{ 'action_advertiser_create'|trans }}">
+        {{ 'action_advertiser_create'|trans }}
+    </a>
+
 {% endblock %}

@@ -9,6 +9,7 @@ namespace App\Entity;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Category.
@@ -37,18 +38,21 @@ class Category
      * @var string|null Name
      */
     #[ORM\Column(type: 'string', length: 45)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 45)]
     private ?string $name = null;
 
     /**
      * Slug.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 45)]
-//    #[Gedmo\Slug(fields: ['name'])]
-//    private ?string $slug = null;
+    #[Assert\Type('string')]
+    #[Assert\Length(min: 3, max: 45)]
+    //    #[Gedmo\Slug(fields: ['name'])]
+    //    private ?string $slug = null;
     private ?string $slug = 'test';
-//    TODO: fix slug
+    //    TODO: fix slug
 
     /**
      * Getter for Id.
@@ -100,3 +104,5 @@ class Category
         $this->slug = $slug;
     }
 }
+
+# TODO: Za pomocą styli kaskadowych pogrub etykietę pól w formularzu oraz dodaj na końcu czerwoną gwiazdkę dla pól wymaganych.

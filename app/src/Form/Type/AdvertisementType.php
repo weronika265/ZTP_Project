@@ -6,6 +6,8 @@
 namespace App\Form\Type;
 
 use App\Entity\Advertisement;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -53,23 +55,35 @@ class AdvertisementType extends AbstractType
             [
                 'label' => 'label.price',
             ]);
-//        TODO: change to display values correctly as in documentation
+        //        TODO: change to display values correctly as in documentation
         $builder->add(
             'location',
             TextType::class,
             [
                 'label' => 'label.location',
                 'required' => true,
-                'attr' => ['max_length' => 45],
             ]);
+        //        $builder->add(
+        //            'date',
+        //            DateType::class,
+        //            [
+        //                'label' => 'label.date',
+        //                'required' => true,
+        //                'attr' => ['max_length' => 45],
+        //            ]);
         $builder->add(
-            'date',
-            DateType::class,
+            'category',
+            EntityType::class,
             [
-                'label' => 'label.date',
+                'class' => Category::class,
+                'choice_label' => function ($category): string {
+                    return $category->getName();
+                },
+                'label' => 'label.category',
+                'placeholder' => 'label.none',
                 'required' => true,
-                'attr' => ['max_length' => 45],
-            ]);
+            ]
+        );
     }
 
     /**

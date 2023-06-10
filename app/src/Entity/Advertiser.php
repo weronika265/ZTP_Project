@@ -9,6 +9,7 @@ namespace App\Entity;
 use App\Repository\AdvertiserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Advertiser.
@@ -35,6 +36,12 @@ class Advertiser
      * @var string|null Email
      */
     #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Email(
+        message: 'The email {{ value }} is not a valid email.',
+    )]
+    #[Assert\Length(max: 50)]
     private ?string $email = null;
 
     /**
@@ -43,6 +50,8 @@ class Advertiser
      * @var string|null Phone
      */
     #[ORM\Column(type: 'string', length: 15, nullable: true)]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 15)]
     private ?string $phone = null;
 
     /**
@@ -51,6 +60,8 @@ class Advertiser
      * @var string|null Name
      */
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
+    #[Assert\Type('string')]
+    #[Assert\Length(min: 3, max: 45)]
     private ?string $name = null;
 
     /**

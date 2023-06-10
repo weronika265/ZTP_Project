@@ -71,32 +71,54 @@ class AdvertiserRepository extends ServiceEntityRepository
     }
 
     /**
-     * Save record.
+     * Save entity.
      *
-     * @param Advertiser $entity Advertiser entity
+     * @param Advertiser $advertiser Advertiser entity
      */
-    public function save(Advertiser $entity, bool $flush = false): void
+    public function save(Advertiser $advertiser): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($advertiser);
+        $this->_em->flush();
     }
 
     /**
-     * Remove record.
+     * Delete entity.
      *
-     * @param Advertiser $entity Advertiser entity
+     * @param Advertiser $advertiser Advertiser entity
      */
-    public function remove(Advertiser $entity, bool $flush = false): void
+    public function delete(Advertiser $advertiser): void
     {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->remove($advertiser);
+        $this->_em->flush();
     }
+
+//    /**
+//     * Save record.
+//     *
+//     * @param Advertiser $entity Advertiser entity
+//     */
+//    public function save(Advertiser $entity, bool $flush = false): void
+//    {
+//        $this->getEntityManager()->persist($entity);
+//
+//        if ($flush) {
+//            $this->getEntityManager()->flush();
+//        }
+//    }
+//
+//    /**
+//     * Remove record.
+//     *
+//     * @param Advertiser $entity Advertiser entity
+//     */
+//    public function remove(Advertiser $entity, bool $flush = false): void
+//    {
+//        $this->getEntityManager()->remove($entity);
+//
+//        if ($flush) {
+//            $this->getEntityManager()->flush();
+//        }
+//    }
 
 //    /**
 //     * @return Advertiser[] Returns an array of Advertiser objects
