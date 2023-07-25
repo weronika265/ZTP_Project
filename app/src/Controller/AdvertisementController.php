@@ -102,10 +102,10 @@ class AdvertisementController extends AbstractController
     )]
     public function create(Request $request): Response
     {
-//        TODO: ustaw advertiser + lekki offtop -> raczej nie trzeba formularzy advertiser?
-//        $user = $this->getUser();
-//        $task = new Task();
-//        $task->setAuthor($user);
+        //        TODO: ustaw advertiser + lekki offtop -> raczej nie trzeba formularzy advertiser?
+        //        $user = $this->getUser();
+        //        $task = new Task();
+        //        $task->setAuthor($user);
 
         $advertisement = new Advertisement();
         $form = $this->createForm(
@@ -173,7 +173,6 @@ class AdvertisementController extends AbstractController
         );
     }
 
-    // ...
     /**
      * Delete action.
      *
@@ -204,6 +203,78 @@ class AdvertisementController extends AbstractController
 
         return $this->render(
             'advertisement/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'advertisement' => $advertisement,
+            ]
+        );
+    }
+
+    #[Route('/{id}/accept', name: 'advertisement_accept', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    public function accept(Request $request, Advertisement $advertisement): Response
+    {
+        $form = $this->createForm(
+            FormType::class,
+            $advertisement,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('advertisement_accept', ['id' => $advertisement->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->advertisementService->accept($advertisement);
+            $this->advertisementService->save($advertisement);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.accepted_successfully')
+            );
+
+            return $this->redirectToRoute('user_index');
+        }
+
+        return $this->render(
+            'advertisement/accept.html.twig',
+            [
+                'form' => $form->createView(),
+                'advertisement' => $advertisement,
+            ]
+        );
+    }
+
+//    TODO: czy nie wystarczy tylko metoda delete, bez tej tutaj reject?
+    /**
+     * Reject action.
+     *
+     * @param Request       $request       HTTP request
+     * @param Advertisement $advertisement Advertisement entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/reject', name: 'advertisement_reject', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    public function reject(Request $request, Advertisement $advertisement): Response
+    {
+        $form = $this->createForm(FormType::class, $advertisement, [
+            'method' => 'DELETE',
+            'action' => $this->generateUrl('advertisement_reject', ['id' => $advertisement->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->advertisementService->delete($advertisement);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.rejected_successfully')
+            );
+
+            return $this->redirectToRoute('user_index');
+        }
+
+        return $this->render(
+            'advertisement/reject.html.twig',
             [
                 'form' => $form->createView(),
                 'advertisement' => $advertisement,

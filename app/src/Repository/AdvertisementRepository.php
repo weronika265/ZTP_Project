@@ -141,6 +141,21 @@ class AdvertisementRepository extends ServiceEntityRepository
             ->setParameter(':category', $category);
     }
 
+    /**
+     * Get advertisements by  inactive status.
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function getByUnacceptedEntity(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select(
+                'advertisement'
+            )
+            ->where('advertisement.is_active = :is_active')
+            ->setParameter(':is_active', 0);
+    }
+
 //    /**
 //     * Save record.
 //     *

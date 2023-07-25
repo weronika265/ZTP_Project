@@ -6,6 +6,7 @@
 
 {% block body %}
     <h1>{{ 'title.advertisement_list'|trans }}</h1>
+
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -37,7 +38,7 @@
                     <td>{{ advertisement.date|format_date() }}</td>
                     <td>{{ advertisement.category.name }}</td>
                     <td>{{ advertisement.advertiser.email }}</td>
-                    {# TODO: Jeśli istnieje advertisement.advertiser.name to też wstawić #}
+{#                     TODO: Jeśli istnieje advertisement.advertiser.name to też wstawić#}
                     <td>
                         <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}

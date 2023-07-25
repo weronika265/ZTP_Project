@@ -50,7 +50,6 @@ class AdvertisementService implements AdvertisementServiceInterface
         }
 
         $this->advertisementRepository->save($advertisement);
-//        TODO: nowe ogloszenie - is_active = 0, zmiana przez admina
     }
 
     /**
@@ -64,6 +63,20 @@ class AdvertisementService implements AdvertisementServiceInterface
     }
 
     /**
+     * Accept entity as active.
+     *
+     * @param Advertisement $advertisement Advertisement entity
+     */
+    public function accept(Advertisement $advertisement): void
+    {
+        if (0 == $advertisement->isIsActive()) {
+            $advertisement->setIsActive(1);
+        }
+
+        $this->advertisementRepository->save($advertisement);
+    }
+
+    /**
      * Get paginated list.
      *
      * @param int $page Page number
@@ -74,6 +87,38 @@ class AdvertisementService implements AdvertisementServiceInterface
     {
         return $this->paginator->paginate(
             $this->advertisementRepository->queryAll(),
+            $page,
+            AdvertisementRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
+    }
+
+    /**
+     * Get paginated list only with selected category.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedListByCategory(int $page): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->advertisementRepository->getByCategory(),
+            $page,
+            AdvertisementRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
+    }
+
+    /**
+     * Get paginated list only with unaccepted entities.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedListWithUnacceptedEntity(int $page): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->advertisementRepository->getByUnacceptedEntity(),
             $page,
             AdvertisementRepository::PAGINATOR_ITEMS_PER_PAGE
         );
