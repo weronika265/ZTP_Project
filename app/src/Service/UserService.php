@@ -40,7 +40,6 @@ class UserService implements UserServiceInterface
      * Constructor.
      *
      * @param UserRepository $userRepository Task repository
-     * @param Security $security
      */
     public function __construct(UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, Security $security)
     {
@@ -73,7 +72,7 @@ class UserService implements UserServiceInterface
     public function savePassword(User $user)
     {
         if ($plainPassword = $user->getPassword()) {
-            $user->setPassword($this->encodePassword($user, $plainPassword));
+            $user->setPassword($this->hashPassword($user, $plainPassword));
         }
 
         $this->userRepository->save($user);
@@ -97,7 +96,7 @@ class UserService implements UserServiceInterface
      *
      * @return string Encoded password
      */
-    private function encodePassword(User $user, string $plainPassword)
+    private function hashPassword(User $user, string $plainPassword): string
     {
         return $this->passwordHasher->hashPassword(
             $user,

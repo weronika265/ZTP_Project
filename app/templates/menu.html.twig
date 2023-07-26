@@ -14,7 +14,7 @@
     </div>
     <div>
         {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
-            <a href="{{ url('user_index') }}" title="{{ 'action.view_usert'|trans }}">
+            <a href="{{ url('user_index') }}" title="{{ 'action.view_user'|trans }}">
                 {{ 'action.view_user'|trans }}
             </a>
         {% endif %}

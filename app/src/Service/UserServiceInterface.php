@@ -10,7 +10,7 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Interface UserServiceInterface
+ * Interface UserServiceInterface.
  */
 interface UserServiceInterface
 {
