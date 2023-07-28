@@ -106,6 +106,30 @@
         <source>title.advertiser_delete</source>
         <target>Delete advertiser</target>
       </trans-unit>
+      <trans-unit id="title.advertisement_accept">
+        <source>title.advertisement_accept</source>
+        <target>Accept advertisement</target>
+      </trans-unit>
+      <trans-unit id="title.advertisement_reject">
+        <source>title.advertisement_reject</source>
+        <target>Reject advertisement</target>
+      </trans-unit>
+      <trans-unit id="title.user_edit">
+        <source>title.user_edit</source>
+        <target>Edit user</target>
+      </trans-unit>
+      <trans-unit id="title.moderate_advertisement_list">
+        <source>title.moderate_advertisement_list</source>
+        <target>Moderate new advertisements</target>
+      </trans-unit>
+      <trans-unit id="title.admin_panel">
+        <source>title.admin_panel</source>
+        <target>Admin panel</target>
+      </trans-unit>
+      <trans-unit id="title.user_info">
+        <source>title.user_info</source>
+        <target>User info</target>
+      </trans-unit>
       <trans-unit id="action_advertiser_create">
         <source>action_advertiser_create</source>
         <target>Create new advertiser</target>
@@ -178,9 +202,17 @@
         <source>message.form_error</source>
         <target>Error occurred in form</target>
       </trans-unit>
+      <trans-unit id="message.accepted_successfully">
+        <source>message.accepted_successfully</source>
+        <target>Advertisement accepted successfully</target>
+      </trans-unit>
+      <trans-unit id="message.rejected_successfully">
+        <source>message.rejected_successfully</source>
+        <target>Advertisement rejected successfully</target>
+      </trans-unit>
       <trans-unit id="message.login_as">
         <source>message.login_as</source>
-        <target>You are logged in as </target>
+        <target>You are logged in as</target>
       </trans-unit>
       <trans-unit id="action.view_advertisement">
         <source>action.view_advertisement</source>
@@ -193,6 +225,26 @@
       <trans-unit id="action.view_advertiser">
         <source>action.view_advertiser</source>
         <target>Advertisers</target>
+      </trans-unit>
+      <trans-unit id="action.accept">
+        <source>action.accept</source>
+        <target>Accept</target>
+      </trans-unit>
+      <trans-unit id="action.reject">
+        <source>action.reject</source>
+        <target>Reject</target>
+      </trans-unit>
+      <trans-unit id="action.view_user">
+        <source>action.view_user</source>
+        <target>View user</target>
+      </trans-unit>
+      <trans-unit id="action.save_info">
+        <source>action.save_info</source>
+        <target>Update info</target>
+      </trans-unit>
+      <trans-unit id="action.save_password">
+        <source>action.save_password</source>
+        <target>Update password</target>
       </trans-unit>
     </body>
   </file>

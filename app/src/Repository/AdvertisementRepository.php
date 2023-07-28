@@ -124,24 +124,6 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get advertisements by category.
-     *
-     * @param Category $category
-     * @param \Doctrine\ORM\QueryBuilder $queryBuilder Query builder
-     *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
-     */
-    public function getByCategory(Category $category, QueryBuilder $queryBuilder): QueryBuilder
-    {
-        return $this->getOrCreateQueryBuilder()
-            ->select(
-                'advertisement'
-            )
-            ->where('advertisement.category = :category')
-            ->setParameter(':category', $category);
-    }
-
-    /**
      * Get advertisements by  inactive status.
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder

@@ -8,6 +8,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
+use App\Service\AdvertisementService;
 use App\Service\CategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -67,6 +68,8 @@ class CategoryController extends AbstractController
         );
     }
 
+//    TODO: zrobic osobna metoda w kontrolerze/ podmienic do cofania z listy ads dla kategorii (bo wraca na glowna strone , a powinno do aktualnej kategorii)
+//    TODO: wstawic tu paginacje
     /**
      * Show action.
      *
@@ -80,11 +83,16 @@ class CategoryController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
-    public function show(Category $category): Response
+    public function show(Category $category, advertisementService $advertisementService): Response
     {
+//        $advertisements = $advertisementService->findByCategory($category);
+
         return $this->render(
             'category/show.html.twig',
-            ['category' => $category]
+            [
+                'category' => $category,
+                'advertisements' => $advertisementService->findByCategory(['category' => $category]),
+            ],
         );
     }
 

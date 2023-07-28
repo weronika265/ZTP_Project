@@ -7,6 +7,7 @@
 namespace App\Service;
 
 use App\Entity\Advertisement;
+use App\Entity\Category;
 use App\Repository\AdvertisementRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -93,22 +94,6 @@ class AdvertisementService implements AdvertisementServiceInterface
     }
 
     /**
-     * Get paginated list only with selected category.
-     *
-     * @param int $page Page number
-     *
-     * @return PaginationInterface<string, mixed> Paginated list
-     */
-    public function getPaginatedListByCategory(int $page): PaginationInterface
-    {
-        return $this->paginator->paginate(
-            $this->advertisementRepository->getByCategory(),
-            $page,
-            AdvertisementRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
-    }
-
-    /**
      * Get paginated list only with unaccepted entities.
      *
      * @param int $page Page number
@@ -122,5 +107,18 @@ class AdvertisementService implements AdvertisementServiceInterface
             $page,
             AdvertisementRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+//    TODO: poprawic, zeby lapalo kategorie a nie array najelpiej
+    /**
+     * Find advertisements by category.
+     *
+     * @param array $category
+     *
+     * @return array $category
+     */
+    public function findByCategory(array $category): array
+    {
+        return $this->advertisementRepository->findBy($category);
     }
 }

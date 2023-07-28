@@ -23,4 +23,52 @@
             {{ 'message.record_not_found'|trans }}
         </p>
     {% endif %}
+
+    {% if advertisements is defined and advertisements|length %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'label.id'|trans }}</th>
+                <th>{{ 'label.name'|trans }}</th>
+                <th>{{ 'label.description'|trans }}</th>
+                <th>{{ 'label.price'|trans }}</th>
+                <th>{{ 'label.location'|trans }}</th>
+                <th>{{ 'label.date'|trans }}</th>
+                <th>{{ 'label.category'|trans }}</th>
+                <th>{{ 'label.advertiser'|trans }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for advertisement in advertisements %}
+                <tr>
+                    <td>{{ advertisement.id }}</td>
+                    <td>{{ advertisement.name }}</td>
+                    <td>{{ advertisement.description }}</td>
+                    <td>{{ advertisement.price|format_currency('PLN') }}</td>
+                    <td>{{ advertisement.location }}</td>
+                    <td>{{ advertisement.date|format_date() }}</td>
+                    <td>{{ advertisement.category.name }}</td>
+                    <td>{{ advertisement.advertiser.email }}</td>
+                    {#                     TODO: Jeśli istnieje advertisement.advertiser.name to też wstawić#}
+                    <td>
+                        <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
+                        <a href="{{ url('advertisement_edit', {id: advertisement.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('advertisement_delete', {id: advertisement.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
 {% endblock %}
