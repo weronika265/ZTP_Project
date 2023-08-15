@@ -73,4 +73,23 @@ class AdvertiserService implements AdvertiserServiceInterface
             AdvertiserRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
+    /**
+     * @param string $email Advertiser email
+     *
+     * @return Advertiser|null Advertiser entity
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function advertiserEmailExists(string $email): Advertiser|null
+    {
+        return $this->advertiserRepository->findOneBy(['email' => $email]);
+
+        /*        if (0 === count($advertiserWithEmail)) {
+                    return 0;
+                }
+
+                return 1;*/
+    }
 }

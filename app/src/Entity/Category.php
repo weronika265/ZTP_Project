@@ -104,5 +104,3 @@ class Category
         $this->slug = $slug;
     }
 }
-
-# TODO: Za pomocą styli kaskadowych pogrub etykietę pól w formularzu oraz dodaj na końcu czerwoną gwiazdkę dla pól wymaganych.

@@ -79,9 +79,7 @@ class Advertisement
      * @var \DateTimeInterface|null Date
      */
     #[ORM\Column(type: 'datetime_immutable')]
-//    #[Assert\DateTime] -> to string, wywala blad
     private ?\DateTimeInterface $date = null;
-    // TODO: dac, zeby robilo auto
 
     /**
      * Is active.

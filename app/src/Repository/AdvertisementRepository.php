@@ -7,7 +7,9 @@
 namespace App\Repository;
 
 use App\Entity\Advertisement;
+use App\Entity\Advertiser;
 use App\Entity\Category;
+use App\Service\AdvertiserService;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -55,13 +57,13 @@ class AdvertisementRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-//            TODO: cos jest nie tak
-//            ->select(
-//                'partial advertisement.{id, name, description, price, location, date, is_active}',
-//                'partial advertiser.{id, email, phone, name}',
-//                'partial advertisement.{id, name}'
-//            )
-//            ->join('advertisement.advertiser', 'advertiser')
+            ->select(
+                'partial advertisement.{id, name, description, price, location, date, is_active}',
+                'partial advertiser.{id, email, phone, name}',
+                'partial category.{id, name}'
+            )
+            ->join('advertisement.advertiser', 'advertiser')
+            ->join('advertisement.category', 'category')
             ->orderBy('advertisement.date', 'DESC');
     }
 
@@ -87,6 +89,7 @@ class AdvertisementRepository extends ServiceEntityRepository
         if (null == $advertisement->getId()) {
             $advertisement->setIsActive(0);
         }
+
         $this->_em->persist($advertisement);
         $this->_em->flush();
     }
@@ -124,16 +127,29 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get advertisements by  inactive status.
+     * Get advertisements by category.
+     *
+     * @param Category $category Category
+     *
+     * @return QueryBuilder QueryBuilder
+     */
+    public function getByCategory(Category $category): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('advertisement')
+            ->where('advertisement.category = :category')
+            ->setParameter(':category', $category);
+    }
+
+    /**
+     * Get advertisements by inactive status.
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
     public function getByUnacceptedEntity(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select(
-                'advertisement'
-            )
+            ->select('advertisement')
             ->where('advertisement.is_active = :is_active')
             ->setParameter(':is_active', 0);
     }
@@ -191,5 +207,3 @@ class AdvertisementRepository extends ServiceEntityRepository
 //        ;
 //    }
 }
-
-// TODO: w jakis sposob przetestowac repo i entity

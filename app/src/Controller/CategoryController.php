@@ -68,8 +68,6 @@ class CategoryController extends AbstractController
         );
     }
 
-//    TODO: zrobic osobna metoda w kontrolerze/ podmienic do cofania z listy ads dla kategorii (bo wraca na glowna strone , a powinno do aktualnej kategorii)
-//    TODO: wstawic tu paginacje
     /**
      * Show action.
      *
@@ -83,15 +81,18 @@ class CategoryController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
-    public function show(Category $category, advertisementService $advertisementService): Response
+    public function show(Category $category, advertisementService $advertisementService, Request $request): Response
     {
-//        $advertisements = $advertisementService->findByCategory($category);
+        $pagination = $advertisementService->getPaginatedListByCategory(
+            $request->query->getInt('page', 1),
+            $category
+        );
 
         return $this->render(
             'category/show.html.twig',
             [
                 'category' => $category,
-                'advertisements' => $advertisementService->findByCategory(['category' => $category]),
+                'pagination' => $pagination,
             ],
         );
     }
@@ -146,6 +147,8 @@ class CategoryController extends AbstractController
     #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Category $category): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(
             CategoryType::class,
             $category,
@@ -188,7 +191,9 @@ class CategoryController extends AbstractController
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {
-        if(!$this->categoryService->canBeDeleted($category)) {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.category_contains_tasks')

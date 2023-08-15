@@ -77,7 +77,6 @@ class UserController extends AbstractController
         );
     }
 
-//    TODO: zmiana nie dziala
     /**
      * Edit action.
      *

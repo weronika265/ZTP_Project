@@ -33,38 +33,38 @@ class AdvertisementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
+        $builder
+            ->add(
             'name',
             TextType::class,
             [
                 'label' => 'label.name',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
-        $builder->add(
+            ])
+            ->add(
             'description',
             TextType::class,
             [
                 'label' => 'label.description',
                 'required' => true,
                 'attr' => ['max_length' => 2000],
-            ]);
-        $builder->add(
+            ])
+            ->add(
             'price',
             MoneyType::class,
             [
                 'label' => 'label.price',
                 'currency' => 'PLN',
-            ]);
-        //        TODO: change to display values correctly as in documentation
-        $builder->add(
+            ])
+            ->add(
             'location',
             TextType::class,
             [
                 'label' => 'label.location',
                 'required' => true,
-            ]);
-        $builder->add(
+            ])
+            ->add(
             'category',
             EntityType::class,
             [
@@ -74,15 +74,12 @@ class AdvertisementType extends AbstractType
                 },
                 'label' => 'label.category',
                 'required' => true,
-            ]
-        );
+            ])
 
-        $builder->add(
+            ->add(
             'advertiser',
             AdvertiserType::class
-        );
-
-        //        TODO: dodać advertiser
+            );
     }
 
     /**

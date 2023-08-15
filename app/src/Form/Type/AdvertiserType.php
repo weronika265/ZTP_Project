@@ -8,7 +8,6 @@ namespace App\Form\Type;
 use App\Entity\Advertiser;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,30 +31,31 @@ class AdvertiserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
-            'email',
-            EmailType::class,
-            [
-                'label' => 'label.email',
-                'required' => true,
-                'attr' => ['max_length' => 50],
-            ]);
-        $builder->add(
-            'phone',
-            TelType::class,
-            [
-                'label' => 'label.phone',
-                'required' => false,
-                'attr' => ['max_length' => 15],
-            ]);
-        $builder->add(
-            'name',
-            TextType::class,
-            [
-                'label' => 'label.name',
-                'required' => false,
-                'attr' => ['max_length' => 45],
-            ]);
+        $builder
+            ->add(
+                'email',
+                EmailType::class,
+                [
+                    'label' => 'label.email',
+                    'required' => true,
+                    'attr' => ['max_length' => 50],
+                ])
+            ->add(
+                'phone',
+                TelType::class,
+                [
+                    'label' => 'label.phone',
+                    'required' => false,
+                    'attr' => ['max_length' => 15],
+                ])
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'label' => 'label.name',
+                    'required' => false,
+                    'attr' => ['max_length' => 45],
+                ]);
     }
 
     /**

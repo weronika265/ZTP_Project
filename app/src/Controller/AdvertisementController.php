@@ -9,6 +9,7 @@ namespace App\Controller;
 use App\Entity\Advertisement;
 use App\Form\Type\AdvertisementType;
 use App\Service\AdvertisementServiceInterface;
+use App\Service\AdvertiserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,6 +29,11 @@ class AdvertisementController extends AbstractController
     private AdvertisementServiceInterface $advertisementService;
 
     /**
+     * Advertiser service.
+     */
+    private AdvertiserServiceInterface $advertiserService;
+
+    /**
      * Translator.
      */
     private TranslatorInterface $translator;
@@ -36,11 +42,13 @@ class AdvertisementController extends AbstractController
      * Constructor.
      *
      * @param AdvertisementServiceInterface $advertisementService Advertisement service
+     * @param AdvertisementServiceInterface $advertiserService    Advertiser service
      * @param TranslatorInterface           $translator           Translator
      */
-    public function __construct(AdvertisementServiceInterface $advertisementService, TranslatorInterface $translator)
+    public function __construct(AdvertisementServiceInterface $advertisementService, AdvertiserServiceInterface $advertiserService, TranslatorInterface $translator)
     {
         $this->advertisementService = $advertisementService;
+        $this->advertiserService = $advertiserService;
         $this->translator = $translator;
     }
 
@@ -102,11 +110,6 @@ class AdvertisementController extends AbstractController
     )]
     public function create(Request $request): Response
     {
-        //        TODO: ustaw advertiser + lekki offtop -> raczej nie trzeba formularzy advertiser?
-        //        $user = $this->getUser();
-        //        $task = new Task();
-        //        $task->setAuthor($user);
-
         $advertisement = new Advertisement();
         $form = $this->createForm(
             AdvertisementType::class,
@@ -116,6 +119,19 @@ class AdvertisementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+//            $email = $request->get('email');
+            $formData = $form->getData();
+            $email = $formData->getAdvertiser()->getEmail();
+            $existingAdvertiser = $this->advertiserService->advertiserEmailExists($email);
+            if ($existingAdvertiser) {
+                $advertisement->setAdvertiser($existingAdvertiser);
+            }
+            /* TODO: check if there is an advertiser with the email
+                     yes -> set existing advertiser
+                     no -> create new one?
+                --> dziala???
+            */
+
             $this->advertisementService->save($advertisement);
 
             $this->addFlash(
@@ -132,6 +148,7 @@ class AdvertisementController extends AbstractController
         );
     }
 
+//    TODO: tak jak advertiser w create czy zostaje jak jest, bo tak ma byc?
     /**
      * Edit action.
      *
@@ -143,6 +160,8 @@ class AdvertisementController extends AbstractController
     #[Route('/{id}/edit', name: 'advertisement_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Advertisement $advertisement): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(
             AdvertisementType::class,
             $advertisement,
@@ -184,6 +203,8 @@ class AdvertisementController extends AbstractController
     #[Route('/{id}/delete', name: 'advertisement_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Advertisement $advertisement): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(FormType::class, $advertisement, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('advertisement_delete', ['id' => $advertisement->getId()]),
@@ -213,6 +234,8 @@ class AdvertisementController extends AbstractController
     #[Route('/{id}/accept', name: 'advertisement_accept', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function accept(Request $request, Advertisement $advertisement): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(
             FormType::class,
             $advertisement,
@@ -256,6 +279,8 @@ class AdvertisementController extends AbstractController
     #[Route('/{id}/reject', name: 'advertisement_reject', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function reject(Request $request, Advertisement $advertisement): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(FormType::class, $advertisement, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('advertisement_reject', ['id' => $advertisement->getId()]),

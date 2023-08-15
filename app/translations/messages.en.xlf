@@ -62,13 +62,25 @@
         <source>label.advertiser</source>
         <target>Advertiser</target>
       </trans-unit>
+      <trans-unit id="label.advertiser_phone">
+        <source>label.advertiser_phone</source>
+        <target>Advertiser's phone number</target>
+      </trans-unit>
+      <trans-unit id="label.advertiser_name">
+        <source>label.advertiser_name</source>
+        <target>Advertiser's name</target>
+      </trans-unit>
       <trans-unit id="title.category_list">
         <source>title.category_list</source>
         <target>Categories</target>
       </trans-unit>
       <trans-unit id="title.category_details">
         <source>title.category_details</source>
-        <target>Categories details #%id%</target>
+        <target>Category details %name%</target>
+      </trans-unit>
+      <trans-unit id="title.category_advertisements">
+        <source>title.category_advertisements</source>
+        <target>Advertisements for selected category</target>
       </trans-unit>
       <trans-unit id="title.category_create">
         <source>title.category_create</source>

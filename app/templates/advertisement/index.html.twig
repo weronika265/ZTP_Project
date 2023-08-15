@@ -12,7 +12,9 @@
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
-
+{# TODO: strona powitalna - dwa linki: wyswietl wszystkie ogloszenia i przejdz do kategorii, w lewym prawym rogu logowanie #}
+{# TODO: display only accepted #}
+{# TODO: blokowanie dostepu anonimowym uzytkownikom edycji i usuwania ogloszen, kategorii(+dodawania). Panel admina zblokowany tylko dla admina #}
         <table class="table table-striped">
             <thead>
             <tr>
@@ -38,17 +40,18 @@
                     <td>{{ advertisement.date|format_date() }}</td>
                     <td>{{ advertisement.category.name }}</td>
                     <td>{{ advertisement.advertiser.email }}</td>
-{#                     TODO: Jeśli istnieje advertisement.advertiser.name to też wstawić#}
                     <td>
                         <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
+                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
                         <a href="{{ url('advertisement_edit', {id: advertisement.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
                         <a href="{{ url('advertisement_delete', {id: advertisement.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

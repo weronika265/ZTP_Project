@@ -15,7 +15,7 @@
             <dt>{{ 'label.description'|trans }}</dt>
             <dd>{{ advertisement.description }}</dd>
             <dt>{{ 'label.price'|trans }}</dt>
-            <dd>{{ advertisement.price }}</dd>
+            <dd>{{ advertisement.price|format_currency('PLN') }}</dd>
             <dt>{{ 'label.location'|trans }}</dt>
             <dd>{{ advertisement.location }}</dd>
             <dt>{{ 'label.date'|trans }}</dt>
@@ -24,6 +24,14 @@
             <dd>{{ advertisement.category.name }}</dd>
             <dt>{{ 'label.advertiser'|trans }}</dt>
             <dd>{{ advertisement.advertiser.email }}</dd>
+            {% if advertisement.advertiser.phone %}
+                <dt>{{ 'label.advertiser_phone'|trans }}</dt>
+                <dd>{{ advertisement.advertiser.phone }}</dd>
+            {% endif %}
+            {% if advertisement.advertiser.name %}
+                <dt>{{ 'label.advertiser_name'|trans }}</dt>
+                <dd>{{ advertisement.advertiser.name }}</dd>
+            {% endif %}
         </dl>
         <p>
             <a href="{{ url('advertisement_index') }}" title="{{ 'action.back_to_list'|trans }}">
