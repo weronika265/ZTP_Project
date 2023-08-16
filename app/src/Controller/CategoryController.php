@@ -6,6 +6,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Advertisement;
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use App\Service\AdvertisementService;
@@ -111,6 +112,8 @@ class CategoryController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $category = new Category();
         $form = $this->createForm(
             CategoryType::class,

@@ -2,9 +2,13 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="title.home">
+        <source>title.home</source>
+        <target>Home page</target>
+      </trans-unit>
       <trans-unit id="title.advertisement_list">
         <source>title.advertisement_list</source>
-        <target>Advertisements</target>
+        <target>All advertisements</target>
       </trans-unit>
       <trans-unit id="title.advertisement_details">
         <source>title.advertisement_details</source>
@@ -80,7 +84,7 @@
       </trans-unit>
       <trans-unit id="title.category_advertisements">
         <source>title.category_advertisements</source>
-        <target>Advertisements for selected category</target>
+        <target>Advertisements for category %name%</target>
       </trans-unit>
       <trans-unit id="title.category_create">
         <source>title.category_create</source>
@@ -97,26 +101,6 @@
       <trans-unit id="action_category_create">
         <source>action_category_create</source>
         <target>Create new category</target>
-      </trans-unit>
-      <trans-unit id="title.advertiser_list">
-        <source>title.advertiser_list</source>
-        <target>Advertisers</target>
-      </trans-unit>
-      <trans-unit id="title.advertiser_details">
-        <source>title.advertiser_details</source>
-        <target>Advertiser details #%id%</target>
-      </trans-unit>
-      <trans-unit id="title.advertiser_create">
-        <source>title.advertiser_create</source>
-        <target>Create advertiser</target>
-      </trans-unit>
-      <trans-unit id="title.advertiser_edit">
-        <source>title.advertiser_edit</source>
-        <target>Edit advertiser</target>
-      </trans-unit>
-      <trans-unit id="title.advertiser_delete">
-        <source>title.advertiser_delete</source>
-        <target>Delete advertiser</target>
       </trans-unit>
       <trans-unit id="title.advertisement_accept">
         <source>title.advertisement_accept</source>
@@ -141,10 +125,6 @@
       <trans-unit id="title.user_info">
         <source>title.user_info</source>
         <target>User info</target>
-      </trans-unit>
-      <trans-unit id="action_advertiser_create">
-        <source>action_advertiser_create</source>
-        <target>Create new advertiser</target>
       </trans-unit>
       <trans-unit id="label.email">
         <source>label.email</source>
@@ -228,15 +208,11 @@
       </trans-unit>
       <trans-unit id="action.view_advertisement">
         <source>action.view_advertisement</source>
-        <target>Advertisements</target>
+        <target>All advertisements</target>
       </trans-unit>
       <trans-unit id="action.view_category">
         <source>action.view_category</source>
         <target>Categories</target>
-      </trans-unit>
-      <trans-unit id="action.view_advertiser">
-        <source>action.view_advertiser</source>
-        <target>Advertisers</target>
       </trans-unit>
       <trans-unit id="action.accept">
         <source>action.accept</source>
@@ -248,7 +224,7 @@
       </trans-unit>
       <trans-unit id="action.view_user">
         <source>action.view_user</source>
-        <target>View user</target>
+        <target>View admin panel</target>
       </trans-unit>
       <trans-unit id="action.save_info">
         <source>action.save_info</source>
@@ -257,6 +233,34 @@
       <trans-unit id="action.save_password">
         <source>action.save_password</source>
         <target>Update password</target>
+      </trans-unit>
+      <trans-unit id="action.view_related">
+        <source>action.view_related</source>
+        <target>View advertisements</target>
+      </trans-unit>
+      <trans-unit id="title.advertising_service">
+        <source>title.advertising_service</source>
+        <target>Advertising service – locally and more</target>
+      </trans-unit>
+      <trans-unit id="title.advertising_service_menu">
+        <source>title.advertising_service_menu</source>
+        <target>Advertising service</target>
+      </trans-unit>
+      <trans-unit id="title.welcome_message">
+        <source>title.welcome_message</source>
+        <target>Add and search for advertisements from all around Poland.</target>
+      </trans-unit>
+      <trans-unit id="message.hello">
+        <source>message.hello</source>
+        <target>Hello %email%!</target>
+      </trans-unit>
+      <trans-unit id="title.advertiser_create">
+        <source>title.advertiser_create</source>
+        <target>Create advertiser</target>
+      </trans-unit>
+      <trans-unit id="title.advertiser_edit">
+        <source>title.advertiser_edit</source>
+        <target>Edit advertiser data</target>
       </trans-unit>
     </body>
   </file>

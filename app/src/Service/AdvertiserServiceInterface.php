@@ -22,20 +22,11 @@ interface AdvertiserServiceInterface
     public function save(Advertiser $advertiser): void;
 
     /**
-     * Delete entity.
+     * Save entity.
      *
      * @param Advertiser $advertiser Advertiser entity
      */
     public function delete(Advertiser $advertiser): void;
-
-    /**
-     * Get paginated list.
-     *
-     * @param int $page Page number
-     *
-     * @return PaginationInterface<string, mixed> Paginated list
-     */
-    public function getPaginatedList(int $page): PaginationInterface;
 
     /**
      * @param string $email Advertiser email

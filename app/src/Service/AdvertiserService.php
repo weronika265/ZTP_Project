@@ -8,7 +8,6 @@ namespace App\Service;
 
 use App\Entity\Advertiser;
 use App\Repository\AdvertiserRepository;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
@@ -20,11 +19,6 @@ class AdvertiserService implements AdvertiserServiceInterface
      * Advertiser repository.
      */
     private AdvertiserRepository $advertiserRepository;
-
-    /**
-     * Paginator.
-     */
-    private PaginatorInterface $paginator;
 
     /**
      * Constructor.
@@ -59,22 +53,6 @@ class AdvertiserService implements AdvertiserServiceInterface
     }
 
     /**
-     * Get paginated list.
-     *
-     * @param int $page Page number
-     *
-     * @return PaginationInterface<string, mixed> Paginated list
-     */
-    public function getPaginatedList(int $page): PaginationInterface
-    {
-        return $this->paginator->paginate(
-            $this->advertiserRepository->queryAll(),
-            $page,
-            AdvertiserRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
-    }
-
-    /**
      * @param string $email Advertiser email
      *
      * @return Advertiser|null Advertiser entity
@@ -85,11 +63,5 @@ class AdvertiserService implements AdvertiserServiceInterface
     public function advertiserEmailExists(string $email): Advertiser|null
     {
         return $this->advertiserRepository->findOneBy(['email' => $email]);
-
-        /*        if (0 === count($advertiserWithEmail)) {
-                    return 0;
-                }
-
-                return 1;*/
     }
 }

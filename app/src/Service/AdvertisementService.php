@@ -111,6 +111,22 @@ class AdvertisementService implements AdvertisementServiceInterface
     }
 
     /**
+     * Get paginated list only with unaccepted entities.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedListWithAcceptedEntity(int $page): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->advertisementRepository->getByAcceptedEntity(),
+            $page,
+            AdvertisementRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
+    }
+
+    /**
      * Get paginated list by category.
      *
      * @param int      $page     Page number

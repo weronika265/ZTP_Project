@@ -10,6 +10,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Category.
@@ -49,10 +50,8 @@ class Category
     #[ORM\Column(type: 'string', length: 45)]
     #[Assert\Type('string')]
     #[Assert\Length(min: 3, max: 45)]
-    //    #[Gedmo\Slug(fields: ['name'])]
-    //    private ?string $slug = null;
-    private ?string $slug = 'test';
-    //    TODO: fix slug
+    #[Gedmo\Slug(fields: ['name'])]
+    private ?string $slug;
 
     /**
      * Getter for Id.

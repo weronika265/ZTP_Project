@@ -1,22 +1,25 @@
-{#{% extends 'base.html.twig' %}#}
-
-{% block body %}
-    <div>
-        <a href="{{ url('advertisement_index') }}" title="{{ 'action.view_advertisement'|trans }}">
-            {{ 'action.view_advertisement'|trans }}
-        </a>
-        <a href="{{ url('category_index') }}" title="{{ 'action.view_category'|trans }}">
-            {{ 'action.view_category'|trans }}
-        </a>
-        <a href="{{ url('advertiser_index') }}" title="{{ 'action.view_advertiser'|trans }}">
-            {{ 'action.view_advertiser'|trans }}
-        </a>
-    </div>
-    <div>
-        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
-            <a href="{{ url('user_index') }}" title="{{ 'action.view_user'|trans }}">
-                {{ 'action.view_user'|trans }}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url('home_index') }}" title="{{ 'title.home'|trans }}">{{ 'title.advertising_service_menu'|trans }}</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="{{ url('advertisement_index') }}" title="{{ 'action.view_advertisement'|trans }}">
+                {{ 'action.view_advertisement'|trans }}
             </a>
-        {% endif %}
+            <a class="nav-item nav-link" href="{{ url('category_index') }}" title="{{ 'action.view_category'|trans }}">
+                {{ 'action.view_category'|trans }}
+            </a>
+        </div>
     </div>
-{% endblock %}
+    <div class="navbar-nav">
+    {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
+        <a class="nav-item nav-link" href="{{ url('user_index') }}" title="{{ 'action.view_user'|trans }}">
+            {{ 'action.view_user'|trans }}
+        </a>
+    {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a class="nav-item nav-link" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
+    {% else %}
+        <a class="nav-item nav-link" href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
+    {% endif %}
+    </div>
+</nav>

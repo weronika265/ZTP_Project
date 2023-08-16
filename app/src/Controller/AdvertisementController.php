@@ -45,8 +45,11 @@ class AdvertisementController extends AbstractController
      * @param AdvertisementServiceInterface $advertiserService    Advertiser service
      * @param TranslatorInterface           $translator           Translator
      */
-    public function __construct(AdvertisementServiceInterface $advertisementService, AdvertiserServiceInterface $advertiserService, TranslatorInterface $translator)
-    {
+    public function __construct(
+        AdvertisementServiceInterface $advertisementService,
+        AdvertiserServiceInterface $advertiserService,
+        TranslatorInterface $translator
+    ) {
         $this->advertisementService = $advertisementService;
         $this->advertiserService = $advertiserService;
         $this->translator = $translator;
@@ -65,7 +68,7 @@ class AdvertisementController extends AbstractController
     )]
     public function index(Request $request): Response
     {
-        $pagination = $this->advertisementService->getPaginatedList(
+        $pagination = $this->advertisementService->getPaginatedListWithAcceptedEntity(
             $request->query->getInt('page', 1)
         );
 
@@ -119,18 +122,12 @@ class AdvertisementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            $email = $request->get('email');
             $formData = $form->getData();
             $email = $formData->getAdvertiser()->getEmail();
             $existingAdvertiser = $this->advertiserService->advertiserEmailExists($email);
             if ($existingAdvertiser) {
                 $advertisement->setAdvertiser($existingAdvertiser);
             }
-            /* TODO: check if there is an advertiser with the email
-                     yes -> set existing advertiser
-                     no -> create new one?
-                --> dziala???
-            */
 
             $this->advertisementService->save($advertisement);
 
@@ -148,7 +145,6 @@ class AdvertisementController extends AbstractController
         );
     }
 
-//    TODO: tak jak advertiser w create czy zostaje jak jest, bo tak ma byc?
     /**
      * Edit action.
      *
@@ -267,7 +263,6 @@ class AdvertisementController extends AbstractController
         );
     }
 
-//    TODO: czy nie wystarczy tylko metoda delete, bez tej tutaj reject?
     /**
      * Reject action.
      *

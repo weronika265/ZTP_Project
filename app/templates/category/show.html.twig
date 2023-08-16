@@ -24,7 +24,7 @@
         </p>
     {% endif %}
 
-    <h2>{{ 'title.category_advertisements'|trans }}</h2>
+    <h2>{{ 'title.category_advertisements'|trans({'%name%': category.name|default('')}) }}</h2>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -60,12 +60,14 @@
                         <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
+                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
                         <a href="{{ url('advertisement_edit', {id: advertisement.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
                         <a href="{{ url('advertisement_delete', {id: advertisement.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

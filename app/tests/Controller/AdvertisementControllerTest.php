@@ -93,5 +93,3 @@ class AdvertisementControllerTest extends WebTestCase
         $this->assertCount(10, $crawler->filter('tbody tr'));
     }
 }
-
-// TODO: TESTY!!

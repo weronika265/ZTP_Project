@@ -55,6 +55,15 @@ interface AdvertisementServiceInterface
     public function getPaginatedListWithUnacceptedEntity(int $page): PaginationInterface;
 
     /**
+     * Get paginated list only with unaccepted entities.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedListWithAcceptedEntity(int $page): PaginationInterface;
+
+    /**
      * Get paginated list by category.
      *
      * @param int      $page     Page number

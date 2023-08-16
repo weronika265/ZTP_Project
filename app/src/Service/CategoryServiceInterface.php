@@ -21,7 +21,6 @@ interface CategoryServiceInterface
      */
     public function save(Category $category): void;
 
-//    TODO: obsluzyc sytuacje, kiedy kategoria jest podpieta do ogloszenia, bo inaczej wywala blad
     /**
      * Delete entity.
      *

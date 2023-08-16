@@ -45,50 +45,6 @@ class AdvertiserController extends AbstractController
     }
 
     /**
-     * Index acton.
-     *
-     * @param Request $request HTTP Request
-     *
-     * @return Response HTTP response
-     */
-    #[Route(
-        name: 'advertiser_index',
-        methods: 'GET'
-    )]
-    public function index(Request $request): Response
-    {
-        $pagination = $this->advertiserService->getPaginatedList(
-            $request->query->getInt('page', 1)
-        );
-
-        return $this->render(
-            'advertiser/index.html.twig',
-            ['pagination' => $pagination]
-        );
-    }
-
-    /**
-     * Show action.
-     *
-     * @param Advertiser $advertiser Advertiser entity
-     *
-     * @return Response HTTP response
-     */
-    #[Route(
-        '/{id}',
-        name: 'advertiser_show',
-        requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET',
-    )]
-    public function show(Advertiser $advertiser): Response
-    {
-        return $this->render(
-            'advertiser/show.html.twig',
-            ['advertiser' => $advertiser]
-        );
-    }
-
-    /**
      * Create action.
      *
      * @param Request $request HTTP request
@@ -161,43 +117,6 @@ class AdvertiserController extends AbstractController
 
         return $this->render(
             'advertiser/edit.html.twig',
-            [
-                'form' => $form->createView(),
-                'advertiser' => $advertiser,
-            ]
-        );
-    }
-
-    /**
-     * Delete action.
-     *
-     * @param Request    $request    HTTP request
-     * @param Advertiser $advertiser Advertiser entity
-     *
-     * @return Response HTTP response
-     */
-    #[Route('/{id}/delete', name: 'advertiser_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
-    public function delete(Request $request, Advertiser $advertiser): Response
-    {
-        $form = $this->createForm(FormType::class, $advertiser, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('advertiser_delete', ['id' => $advertiser->getId()]),
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->advertiserService->delete($advertiser);
-
-            $this->addFlash(
-                'success',
-                $this->translator->trans('message.deleted_successfully')
-            );
-
-            return $this->redirectToRoute('advertiser_index');
-        }
-
-        return $this->render(
-            'advertiser/delete.html.twig',
             [
                 'form' => $form->createView(),
                 'advertiser' => $advertiser,
