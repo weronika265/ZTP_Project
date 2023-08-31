@@ -41,8 +41,11 @@ class UserService implements UserServiceInterface
      *
      * @param UserRepository $userRepository Task repository
      */
-    public function __construct(UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, Security $security)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        UserPasswordHasherInterface $passwordHasher,
+        Security $security
+    ) {
         $this->userRepository = $userRepository;
         $this->passwordHasher = $passwordHasher;
         $this->security = $security;

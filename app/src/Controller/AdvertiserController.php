@@ -10,7 +10,6 @@ use App\Entity\Advertiser;
 use App\Form\Type\AdvertiserType;
 use App\Service\AdvertiserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,8 +34,7 @@ class AdvertiserController extends AbstractController
     /**
      * Constructor.
      *
-     * @param AdvertiserServiceInterface $taskService Task service
-     * @param TranslatorInterface        $translator  Translator
+     * @param TranslatorInterface $translator Translator
      */
     public function __construct(AdvertiserServiceInterface $advertiserService, TranslatorInterface $translator)
     {

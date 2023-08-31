@@ -29,7 +29,6 @@ class AdvertisementFixtures extends AbstractBaseFixtures implements DependentFix
             $advertisement = new Advertisement();
             $advertisement->setName($this->faker->sentence);
             $advertisement->setDescription($this->faker->paragraph);
-            //            $advertisement->setPrice(rand(0, 10000000.00));
             $advertisement->setPrice(rand(0, 5000.00));
             $advertisement->setLocation($this->faker->city);
             $advertisement->setDate(

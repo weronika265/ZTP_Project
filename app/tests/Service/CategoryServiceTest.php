@@ -7,6 +7,7 @@
 namespace App\Tests\Service;
 
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
 use Doctrine\DBAL\Types\Types;
@@ -45,6 +46,7 @@ class CategoryServiceTest extends KernelTestCase
         $container = static::getContainer();
         $this->entityManager = $container->get('doctrine.orm.entity_manager');
         $this->categoryService = $container->get(CategoryService::class);
+        $this->categoryRepository = $container->get(categoryRepository::class);
     }
 
     /**
@@ -119,13 +121,11 @@ class CategoryServiceTest extends KernelTestCase
         $expectedCategoryId = $expectedCategory->getId();
 
         // when
-//        $resultCategory = $this->categoryService->findOneById($expectedCategoryId);
-        $resultCategory = $this->categoryService->categoryRespository->findOneById($expectedCategoryId);
+        $resultCategory = $this->categoryRepository->findOneById($expectedCategoryId);
 
         // then
         $this->assertEquals($expectedCategory, $resultCategory);
     }
-//    TODO: naprawic test przy when, bo albo nie zna funkcji w serwisie, albo duplikat wpisu dla klucza
 
     /**
      * Test pagination empty list.
@@ -152,6 +152,4 @@ class CategoryServiceTest extends KernelTestCase
         // then
         $this->assertEquals($expectedResultSize, $result->count());
     }
-
-    // TODO: inne testy - paginacja, itd.
 }

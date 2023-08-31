@@ -6,7 +6,6 @@
 namespace App\Form\Type;
 
 use App\Entity\Advertisement;
-use App\Entity\Advertiser;
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -35,50 +34,50 @@ class AdvertisementType extends AbstractType
     {
         $builder
             ->add(
-            'name',
-            TextType::class,
-            [
-                'label' => 'label.name',
-                'required' => true,
-                'attr' => ['max_length' => 255],
-            ])
+                'name',
+                TextType::class,
+                [
+                    'label' => 'label.name',
+                    'required' => true,
+                    'attr' => ['max_length' => 255],
+                ])
             ->add(
-            'description',
-            TextType::class,
-            [
-                'label' => 'label.description',
-                'required' => true,
-                'attr' => ['max_length' => 2000],
-            ])
+                'description',
+                TextType::class,
+                [
+                    'label' => 'label.description',
+                    'required' => true,
+                    'attr' => ['max_length' => 2000],
+                ])
             ->add(
-            'price',
-            MoneyType::class,
-            [
-                'label' => 'label.price',
-                'currency' => 'PLN',
-            ])
+                'price',
+                MoneyType::class,
+                [
+                    'label' => 'label.price',
+                    'currency' => 'PLN',
+                ])
             ->add(
-            'location',
-            TextType::class,
-            [
-                'label' => 'label.location',
-                'required' => true,
-            ])
+                'location',
+                TextType::class,
+                [
+                    'label' => 'label.location',
+                    'required' => true,
+                ])
             ->add(
-            'category',
-            EntityType::class,
-            [
-                'class' => Category::class,
-                'choice_label' => function ($category): string {
-                    return $category->getName();
-                },
-                'label' => 'label.category',
-                'required' => true,
-            ])
+                'category',
+                EntityType::class,
+                [
+                    'class' => Category::class,
+                    'choice_label' => function ($category): string {
+                        return $category->getName();
+                    },
+                    'label' => 'label.category',
+                    'required' => true,
+                ])
 
             ->add(
-            'advertiser',
-            AdvertiserType::class
+                'advertiser',
+                AdvertiserType::class
             );
     }
 

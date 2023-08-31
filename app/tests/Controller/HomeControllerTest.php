@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Advertiser controller tests.
+ * Home controller tests.
  */
 
 namespace App\Tests\Controller;
@@ -10,16 +10,16 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class AdvertiserControllerTest.
+ * Class HomeControllerTest.
  */
-class AdvertiserControllerTest extends WebTestCase
+class HomeControllerTest extends WebTestCase
 {
     /**
      *  Test route.
      *
      * @const string
      */
-    public const TEST_ROUTE = '/advertiser';
+    public const TEST_ROUTE = '/';
 
     /**
      * Test client.
@@ -35,7 +35,7 @@ class AdvertiserControllerTest extends WebTestCase
     }
 
     /**
-     * Test '/advertiser' route.
+     * Test '/' route.
      */
     public function testCategoryRoute(): void
     {
@@ -51,7 +51,7 @@ class AdvertiserControllerTest extends WebTestCase
     }
 
     /**
-     * Test '/advertiser' route content.
+     * Test '/' route content.
      */
     public function testCategoryRouteContent(): void
     {
@@ -60,22 +60,7 @@ class AdvertiserControllerTest extends WebTestCase
         $this->httpClient->request('GET', self::TEST_ROUTE);
 
         // then
-        $this->assertSelectorTextContains('html title', 'Sprzedający');
-    }
-
-    /**
-     * Test single advertiser route.
-     */
-    public function testCategorySingleRoute(): void
-    {
-        // given
-        $expectedStatusCode = '200';
-
-        // when
-        $this->httpClient->request('GET', self::TEST_ROUTE.'/1');
-        $resultHttpResponse = $this->httpClient->getResponse()->getStatusCode();
-
-        // then
-        $this->assertEquals($expectedStatusCode, $resultHttpResponse);
+        $this->assertSelectorTextContains('html title', 'Strona główna');
+        $this->assertSelectorTextContains('html h1', 'Serwis ogłoszeniowy – lokalnie i nie tylko');
     }
 }

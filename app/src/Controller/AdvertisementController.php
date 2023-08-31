@@ -42,7 +42,7 @@ class AdvertisementController extends AbstractController
      * Constructor.
      *
      * @param AdvertisementServiceInterface $advertisementService Advertisement service
-     * @param AdvertisementServiceInterface $advertiserService    Advertiser service
+     * @param AdvertiserServiceInterface    $advertiserService    Advertiser service
      * @param TranslatorInterface           $translator           Translator
      */
     public function __construct(
