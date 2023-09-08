@@ -6,11 +6,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Advertisement;
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use App\Service\AdvertisementService;
 use App\Service\CategoryServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,7 +72,9 @@ class CategoryController extends AbstractController
     /**
      * Show action.
      *
-     * @param Category $category Category entity
+     * @param Category             $category             Category entity
+     * @param AdvertisementService $advertisementService Advertisement service
+     * @param Request              $request              HTTP request
      *
      * @return Response HTTP response
      */
@@ -112,8 +114,6 @@ class CategoryController extends AbstractController
     )]
     public function create(Request $request): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $category = new Category();
         $form = $this->createForm(
             CategoryType::class,
@@ -148,6 +148,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[isGranted('EDIT', subject: 'category')]
     public function edit(Request $request, Category $category): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -192,6 +193,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[isGranted('DELETE', subject: 'category')]
     public function delete(Request $request, Category $category): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

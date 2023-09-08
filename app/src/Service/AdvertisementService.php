@@ -7,7 +7,6 @@
 namespace App\Service;
 
 use App\Entity\Advertisement;
-use App\Entity\Advertiser;
 use App\Entity\Category;
 use App\Repository\AdvertisementRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -71,8 +70,8 @@ class AdvertisementService implements AdvertisementServiceInterface
      */
     public function accept(Advertisement $advertisement): void
     {
-        if (0 == $advertisement->isIsActive()) {
-            $advertisement->setIsActive(1);
+        if (false === $advertisement->isIsActive()) {
+            $advertisement->setIsActive(true);
         }
 
         $this->advertisementRepository->save($advertisement);

@@ -39,7 +39,8 @@ class AdvertiserType extends AbstractType
                     'label' => 'label.email',
                     'required' => true,
                     'attr' => ['max_length' => 50],
-                ])
+                ]
+            )
             ->add(
                 'phone',
                 TelType::class,
@@ -47,7 +48,8 @@ class AdvertiserType extends AbstractType
                     'label' => 'label.phone',
                     'required' => false,
                     'attr' => ['max_length' => 15],
-                ])
+                ]
+            )
             ->add(
                 'name',
                 TextType::class,
@@ -55,7 +57,8 @@ class AdvertiserType extends AbstractType
                     'label' => 'label.name',
                     'required' => false,
                     'attr' => ['max_length' => 45],
-                ]);
+                ]
+            );
     }
 
     /**

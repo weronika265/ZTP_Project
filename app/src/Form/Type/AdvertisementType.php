@@ -40,7 +40,8 @@ class AdvertisementType extends AbstractType
                     'label' => 'label.name',
                     'required' => true,
                     'attr' => ['max_length' => 255],
-                ])
+                ]
+            )
             ->add(
                 'description',
                 TextType::class,
@@ -48,21 +49,25 @@ class AdvertisementType extends AbstractType
                     'label' => 'label.description',
                     'required' => true,
                     'attr' => ['max_length' => 2000],
-                ])
+                ]
+            )
             ->add(
                 'price',
                 MoneyType::class,
                 [
                     'label' => 'label.price',
                     'currency' => 'PLN',
-                ])
+                ]
+            )
             ->add(
                 'location',
                 TextType::class,
                 [
                     'label' => 'label.location',
                     'required' => true,
-                ])
+                    'attr' => ['max_length' => 45],
+                ]
+            )
             ->add(
                 'category',
                 EntityType::class,
@@ -73,7 +78,8 @@ class AdvertisementType extends AbstractType
                     },
                     'label' => 'label.category',
                     'required' => true,
-                ])
+                ]
+            )
 
             ->add(
                 'advertiser',

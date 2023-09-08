@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  */
 class UserRoleTest extends TestCase
 {
-    public function testLabel()
+    public function testLabel(): void
     {
         self::assertEquals('label.role_user', UserRole::ROLE_USER->label());
         self::assertEquals('label.role_admin', UserRole::ROLE_ADMIN->label());

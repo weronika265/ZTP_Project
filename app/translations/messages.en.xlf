@@ -26,13 +26,17 @@
         <source>title.advertisement_delete</source>
         <target>Delete advertisement</target>
       </trans-unit>
-      <trans-unit id="action_advertisement_create">
-        <source>action_advertisement_create</source>
+      <trans-unit id="action.advertisement_create">
+        <source>action.advertisement_create</source>
         <target>Create new advertisement</target>
       </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
         <target>No advertisements found</target>
+      </trans-unit>
+      <trans-unit id="message.updated_successfully">
+          <source>message.updated_successfully</source>
+          <target>Updated successfully</target>
       </trans-unit>
       <trans-unit id="label.id">
         <source>label.id</source>
@@ -98,8 +102,8 @@
         <source>title.category_delete</source>
         <target>Delete category</target>
       </trans-unit>
-      <trans-unit id="action_category_create">
-        <source>action_category_create</source>
+      <trans-unit id="action.category_create">
+        <source>action.category_create</source>
         <target>Create new category</target>
       </trans-unit>
       <trans-unit id="title.advertisement_accept">
@@ -145,6 +149,10 @@
       <trans-unit id="label.password">
         <source>label.password</source>
         <target>Password</target>
+      </trans-unit>
+      <trans-unit id="label.password_repeat">
+        <source>label.password_repeat</source>
+        <target>Repeat password</target>
       </trans-unit>
       <trans-unit id="action.view">
         <source>action.view</source>
@@ -261,6 +269,10 @@
       <trans-unit id="title.advertiser_edit">
         <source>title.advertiser_edit</source>
         <target>Edit advertiser data</target>
+      </trans-unit>
+      <trans-unit id="Advertiser">
+        <source>Advertiser</source>
+        <target>Advertiser</target>
       </trans-unit>
     </body>
   </file>

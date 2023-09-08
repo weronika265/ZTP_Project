@@ -78,6 +78,10 @@ class AdvertisementControllerTest extends WebTestCase
         // given
         $expectedStatusCode = 200;
 
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $adminUser = $userRepository->findOneByEmail('admin@internal.com');
+        $this->httpClient->loginUser($adminUser);
+
         // when
         $this->httpClient->request('GET', self::TEST_ROUTE.'/1');
         $resultHttpStatusCode = $this->httpClient->getResponse()->getStatusCode();
@@ -137,6 +141,7 @@ class AdvertisementControllerTest extends WebTestCase
             $testAdvertiser,
             $testCategory
         );
+        $testAdvertisement->setIsActive(true);
 
         $advertisementId = $testAdvertisement->getId();
 
@@ -161,7 +166,6 @@ class AdvertisementControllerTest extends WebTestCase
         $this->assertEquals($expectedAdvertisementName, $savedAdvertisement->getName());
     }
 
-    //    NIE DZIALA
     /**
      * Test advertisement delete route.
      */
@@ -200,7 +204,6 @@ class AdvertisementControllerTest extends WebTestCase
             $this->assertNull($advertisementRepository->findOneById($advertisementId));
         }*/
 
-    // ciagle jest to false przy isAccepted -> podobny problem przy delete?
     /**
      * Test advertisement accept route.
      */
@@ -287,13 +290,8 @@ class AdvertisementControllerTest extends WebTestCase
      * @param Advertiser $advertiser  Advertiser
      * @param Category   $category    Category
      */
-    public function createAdvertisement(
-        string $name,
-        string $description,
-        string $location,
-        Advertiser $advertiser,
-        Category $category
-    ): Advertisement {
+    public function createAdvertisement(string $name, string $description, string $location, Advertiser $advertiser, Category $category): Advertisement
+    {
         $advertisement = new Advertisement();
         $advertisement->setName($name);
         $advertisement->setDescription($description);

@@ -40,7 +40,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.price'|trans, 'advertisement.price') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.location'|trans, 'advertisement.location') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.date'|trans, 'advertisement.date') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.name') }}</th>
+                <th>{{ 'label.category'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.advertiser'|trans, 'advertiser.email') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -60,7 +60,7 @@
                         <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
-                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
+                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN', category)) %}
                         <a href="{{ url('advertisement_edit', {id: advertisement.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>

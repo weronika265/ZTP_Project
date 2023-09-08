@@ -7,7 +7,6 @@
 namespace App\Service;
 
 use App\Entity\Advertiser;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
  * Interface AdvertiserServiceInterface.

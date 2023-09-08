@@ -39,8 +39,8 @@ class UserPasswordType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'Passwords must be the same',
                 'options' => ['attr' => ['class' => 'password-field']],
-                'first_options' => ['label' => 'label_password'],
-                'second_options' => ['label' => 'label_password_repeat'],
+                'first_options' => ['label' => 'label.password'],
+                'second_options' => ['label' => 'label.password_repeat'],
             ]
         );
     }

@@ -25,7 +25,11 @@ class AdvertisementFixtures extends AbstractBaseFixtures implements DependentFix
      */
     public function loadData(): void
     {
-        $this->createMany(30, 'advertisements', function (int $i) {
+        if (null === $this->manager || null === $this->faker) {
+            return;
+        }
+
+        $this->createMany(30, 'advertisements_pending', function () {
             $advertisement = new Advertisement();
             $advertisement->setName($this->faker->sentence);
             $advertisement->setDescription($this->faker->paragraph);
@@ -33,9 +37,34 @@ class AdvertisementFixtures extends AbstractBaseFixtures implements DependentFix
             $advertisement->setLocation($this->faker->city);
             $advertisement->setDate(
                 \DateTimeImmutable::createFromMutable(
-                    $this->faker->dateTimeBetween('-100 days', '-1 days'))
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
             );
             $advertisement->setIsActive(false);
+
+            /** @var Category $category */
+            $category = $this->getRandomReference('categories');
+            $advertisement->setCategory($category);
+
+            /** @var Advertiser $advertiser */
+            $advertiser = $this->getRandomReference('advertisers');
+            $advertisement->setAdvertiser($advertiser);
+
+            return $advertisement;
+        });
+
+        $this->createMany(15, 'advertisements_accepted', function () {
+            $advertisement = new Advertisement();
+            $advertisement->setName($this->faker->sentence);
+            $advertisement->setDescription($this->faker->paragraph);
+            $advertisement->setPrice(rand(0, 5000.00));
+            $advertisement->setLocation($this->faker->city);
+            $advertisement->setDate(
+                \DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
+            $advertisement->setIsActive(true);
 
             /** @var Category $category */
             $category = $this->getRandomReference('categories');

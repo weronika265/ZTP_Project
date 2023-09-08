@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class UserController.
@@ -42,11 +43,13 @@ class UserController extends AbstractController
      *
      * @param UserService                   $userService          User service
      * @param AdvertisementServiceInterface $advertisementService Advertisement service
+     * @param TranslatorInterface           $translator           Translator
      */
-    public function __construct(UserServiceInterface $userService, AdvertisementServiceInterface $advertisementService)
+    public function __construct(UserServiceInterface $userService, AdvertisementServiceInterface $advertisementService, TranslatorInterface $translator)
     {
         $this->userService = $userService;
         $this->advertisementService = $advertisementService;
+        $this->translator = $translator;
     }
 
     /**
@@ -105,12 +108,12 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->save($user);
-            $this->addFlash('success', 'message_updated_successfully');
+            $this->translator->trans('message.updated_successfully');
         }
 
         if ($formPass->isSubmitted() && $formPass->isValid()) {
             $this->userService->savePassword($user);
-            $this->addFlash('success', 'message_updated_successfully');
+            $this->translator->trans('message.updated_successfully');
         }
 
         return $this->render(

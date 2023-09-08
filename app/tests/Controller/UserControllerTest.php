@@ -78,7 +78,7 @@ class UserControllerTest extends WebTestCase
 
         $this->httpClient->submit($formData);
 
-        //then
+        // then
         $userRepository = static::getContainer()->get(UserRepository::class);
         $updatedAdmin = $userRepository->findOneById($adminId);
 

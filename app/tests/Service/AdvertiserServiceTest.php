@@ -11,7 +11,6 @@ use App\Repository\AdvertiserRepository;
 use App\Service\AdvertiserService;
 use App\Service\AdvertiserServiceInterface;
 use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
@@ -25,11 +24,6 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 class AdvertiserServiceTest extends KernelTestCase
 {
-    /**
-     * Advertiser repository.
-     */
-    private ?EntityManagerInterface $advertiserManager;
-
     /**
      * Advertiser service.
      */

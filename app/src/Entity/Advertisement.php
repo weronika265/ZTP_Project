@@ -213,7 +213,7 @@ class Advertisement
     /**
      * Setter for creation date.
      *
-     * @param \DateTimeInterface $date Cration date
+     * @param \DateTimeInterface $date Creation date
      */
     public function setDate(\DateTimeInterface $date): void
     {

@@ -66,18 +66,6 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('advertisement');
-    }
-
-    /**
      * Save entity.
      *
      * @param Advertisement $advertisement Advertisement entity
@@ -85,7 +73,7 @@ class AdvertisementRepository extends ServiceEntityRepository
     public function save(Advertisement $advertisement): void
     {
         if (null == $advertisement->getId()) {
-            $advertisement->setIsActive(0);
+            $advertisement->setIsActive(false);
         }
 
         $this->_em->persist($advertisement);
@@ -134,7 +122,11 @@ class AdvertisementRepository extends ServiceEntityRepository
     public function getByCategory(Category $category): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('advertisement')
+            ->select(
+                'partial advertisement.{id, name, description, price, location, date, is_active}',
+                'partial advertiser.{id, email, phone, name}',
+            )
+            ->join('advertisement.advertiser', 'advertiser')
             ->where('advertisement.category = :category')
             ->andWhere('advertisement.is_active = :is_active')
             ->setParameter(':category', $category)
@@ -150,7 +142,13 @@ class AdvertisementRepository extends ServiceEntityRepository
     public function getByUnacceptedEntity(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('advertisement')
+            ->select(
+                'partial advertisement.{id, name, description, price, location, date, is_active}',
+                'partial advertiser.{id, email, phone, name}',
+                'partial category.{id, name}'
+            )
+            ->join('advertisement.advertiser', 'advertiser')
+            ->join('advertisement.category', 'category')
             ->where('advertisement.is_active = :is_active')
             ->setParameter(':is_active', 0)
             ->orderBy('advertisement.date', 'DESC');
@@ -164,62 +162,80 @@ class AdvertisementRepository extends ServiceEntityRepository
     public function getByAcceptedEntity(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('advertisement')
+            ->select(
+                'partial advertisement.{id, name, description, price, location, date, is_active}',
+                'partial advertiser.{id, email, phone, name}',
+                'partial category.{id, name}'
+            )
+            ->join('advertisement.advertiser', 'advertiser')
+            ->join('advertisement.category', 'category')
             ->where('advertisement.is_active = :is_active')
             ->setParameter(':is_active', 1)
             ->orderBy('advertisement.date', 'DESC');
     }
 
-//    /**
-//     * Save record.
-//     *
-//     * @param Advertisement $entity Advertisement entity
-//     */
-//    public function save(Advertisement $entity, bool $flush = false): void
-//    {
-//        $this->getEntityManager()->persist($entity);
-//
-//        if ($flush) {
-//            $this->getEntityManager()->flush();
-//        }
-//    }
-//
-//    /**
-//     * Remove record.
-//     *
-//     * @param Advertisement $entity Advertisement entity
-//     */
-//    public function remove(Advertisement $entity, bool $flush = false): void
-//    {
-//        $this->getEntityManager()->remove($entity);
-//
-//        if ($flush) {
-//            $this->getEntityManager()->flush();
-//        }
-//    }
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('advertisement');
+    }
 
-//    /**
-//     * @return Advertisement[] Returns an array of Advertisement objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * Save record.
+    //     *
+    //     * @param Advertisement $entity Advertisement entity
+    //     */
+    //    public function save(Advertisement $entity, bool $flush = false): void
+    //    {
+    //        $this->getEntityManager()->persist($entity);
+    //
+    //        if ($flush) {
+    //            $this->getEntityManager()->flush();
+    //        }
+    //    }
+    //
+    //    /**
+    //     * Remove record.
+    //     *
+    //     * @param Advertisement $entity Advertisement entity
+    //     */
+    //    public function remove(Advertisement $entity, bool $flush = false): void
+    //    {
+    //        $this->getEntityManager()->remove($entity);
+    //
+    //        if ($flush) {
+    //            $this->getEntityManager()->flush();
+    //        }
+    //    }
 
-//    public function findOneBySomeField($value): ?Advertisement
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Advertisement[] Returns an array of Advertisement objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('a.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Advertisement
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

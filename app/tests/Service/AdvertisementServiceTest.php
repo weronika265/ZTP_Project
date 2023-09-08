@@ -243,7 +243,6 @@ class AdvertisementServiceTest extends KernelTestCase
         $this->assertEquals($expectedResultSize, $result->count());
     }
 
-    // co nie tak z tym is active -> 1 (chociaz jest na true). Czy nie o to chodzi?
     /*
      * Test pagination list by accepted entity.
      */
@@ -283,7 +282,6 @@ class AdvertisementServiceTest extends KernelTestCase
             $this->assertEquals($expectedResultSize, $result->count());
         }*/
 
-    // tu tez
     /*
      * Test pagination list by category.
      */

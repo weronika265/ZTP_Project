@@ -29,7 +29,7 @@
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.view_related'|trans }}">
                             {{ 'action.view_related'|trans }}
                         </a>
-                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
+                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN', category)) %}
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
@@ -54,8 +54,8 @@
     {% endif %}
 
     {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
-    <a class="btn btn-outline-primary" href="{{ url('category_create') }}" title="{{ 'action_category_create'|trans }}">
-        {{ 'action_category_create'|trans }}
+    <a class="btn btn-outline-primary" href="{{ url('category_create') }}" title="{{ 'action.category_create'|trans }}">
+        {{ 'action.category_create'|trans }}
     </a>
     {% endif %}
 

@@ -39,13 +39,12 @@ class UserService implements UserServiceInterface
     /**
      * Constructor.
      *
-     * @param UserRepository $userRepository Task repository
+     * @param UserRepository              $userRepository User repository
+     * @param UserPasswordHasherInterface $passwordHasher Password hasher
+     * @param Security                    $security       Security
      */
-    public function __construct(
-        UserRepository $userRepository,
-        UserPasswordHasherInterface $passwordHasher,
-        Security $security
-    ) {
+    public function __construct(UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, Security $security)
+    {
         $this->userRepository = $userRepository;
         $this->passwordHasher = $passwordHasher;
         $this->security = $security;
@@ -72,7 +71,7 @@ class UserService implements UserServiceInterface
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function savePassword(User $user)
+    public function savePassword(User $user): void
     {
         if ($plainPassword = $user->getPassword()) {
             $user->setPassword($this->hashPassword($user, $plainPassword));

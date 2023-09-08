@@ -41,7 +41,7 @@
                         <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
-                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN')) %}
+                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN', advertisement)) %}
                         <a href="{{ url('advertisement_edit', {id: advertisement.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
@@ -65,8 +65,10 @@
         </p>
     {% endif %}
 
-    <a class="btn btn-outline-primary" href="{{ url('advertisement_create') }}" title="{{ 'action_advertisement_create'|trans }}">
-        {{ 'action_advertisement_create'|trans }}
+    {% if not is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-outline-primary" href="{{ url('advertisement_create') }}" title="{{ 'action.advertisement_create'|trans }}">
+        {{ 'action.advertisement_create'|trans }}
     </a>
+    {% endif %}
 
 {% endblock %}

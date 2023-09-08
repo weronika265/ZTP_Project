@@ -10,11 +10,13 @@ use App\Entity\Advertisement;
 use App\Form\Type\AdvertisementType;
 use App\Service\AdvertisementServiceInterface;
 use App\Service\AdvertiserServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -34,6 +36,11 @@ class AdvertisementController extends AbstractController
     private AdvertiserServiceInterface $advertiserService;
 
     /**
+     * Advertiser service.
+     */
+    private Security $security;
+
+    /**
      * Translator.
      */
     private TranslatorInterface $translator;
@@ -43,15 +50,14 @@ class AdvertisementController extends AbstractController
      *
      * @param AdvertisementServiceInterface $advertisementService Advertisement service
      * @param AdvertiserServiceInterface    $advertiserService    Advertiser service
+     * @param Security                      $security             Security
      * @param TranslatorInterface           $translator           Translator
      */
-    public function __construct(
-        AdvertisementServiceInterface $advertisementService,
-        AdvertiserServiceInterface $advertiserService,
-        TranslatorInterface $translator
-    ) {
+    public function __construct(AdvertisementServiceInterface $advertisementService, AdvertiserServiceInterface $advertiserService, Security $security, TranslatorInterface $translator)
+    {
         $this->advertisementService = $advertisementService;
         $this->advertiserService = $advertiserService;
+        $this->security = $security;
         $this->translator = $translator;
     }
 
@@ -91,8 +97,13 @@ class AdvertisementController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
+    #[isGranted('VIEW', subject: 'advertisement')]
     public function show(Advertisement $advertisement): Response
     {
+        /*        if (false === $advertisement->isIsActive() && true === $this->isGranted('ROLE_ADMIN')) {
+                    $this->denyAccessUnlessGranted('ROLE_ADMIN');
+                }*/
+
         return $this->render(
             'advertisement/show.html.twig',
             ['advertisement' => $advertisement]
@@ -113,6 +124,10 @@ class AdvertisementController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('advertisement_index');
+        }
+
         $advertisement = new Advertisement();
         $form = $this->createForm(
             AdvertisementType::class,
@@ -154,10 +169,9 @@ class AdvertisementController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'advertisement_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[isGranted('EDIT', subject: 'advertisement')]
     public function edit(Request $request, Advertisement $advertisement): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $form = $this->createForm(
             AdvertisementType::class,
             $advertisement,
@@ -197,10 +211,9 @@ class AdvertisementController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'advertisement_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[isGranted('DELETE', subject: 'advertisement')]
     public function delete(Request $request, Advertisement $advertisement): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $form = $this->createForm(FormType::class, $advertisement, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('advertisement_delete', ['id' => $advertisement->getId()]),
@@ -227,11 +240,18 @@ class AdvertisementController extends AbstractController
         );
     }
 
+    /**
+     * Accept action.
+     *
+     * @param Request       $request       HTTP request
+     * @param Advertisement $advertisement Advertisement entity
+     *
+     * @return Response HTTP response
+     */
     #[Route('/{id}/accept', name: 'advertisement_accept', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[isGranted('ACCEPT', subject: 'advertisement')]
     public function accept(Request $request, Advertisement $advertisement): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $form = $this->createForm(
             FormType::class,
             $advertisement,
@@ -272,10 +292,9 @@ class AdvertisementController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/reject', name: 'advertisement_reject', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[isGranted('DELETE', subject: 'advertisement')]
     public function reject(Request $request, Advertisement $advertisement): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $form = $this->createForm(FormType::class, $advertisement, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('advertisement_reject', ['id' => $advertisement->getId()]),

@@ -53,19 +53,7 @@ class CategoryRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select('partial category.{id, name}')
-            ->orderBy('category.name', 'DESC');
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('category');
+            ->orderBy('category.name');
     }
 
     /**
@@ -90,56 +78,68 @@ class CategoryRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
-//    /**
-//     * Save record.
-//     *
-//     * @param Category $entity Category entity
-//     */
-//    public function save(Category $entity, bool $flush = false): void
-//    {
-//        $this->getEntityManager()->persist($entity);
-//
-//        if ($flush) {
-//            $this->getEntityManager()->flush();
-//        }
-//    }
-//
-//    /**
-//     * Remove record.
-//     *
-//     * @param Category $entity Category entity
-//     */
-//    public function remove(Category $entity, bool $flush = false): void
-//    {
-//        $this->getEntityManager()->remove($entity);
-//
-//        if ($flush) {
-//            $this->getEntityManager()->flush();
-//        }
-//    }
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('category');
+    }
 
-//    /**
-//     * @return Category[] Returns an array of Category objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * Save record.
+    //     *
+    //     * @param Category $entity Category entity
+    //     */
+    //    public function save(Category $entity, bool $flush = false): void
+    //    {
+    //        $this->getEntityManager()->persist($entity);
+    //
+    //        if ($flush) {
+    //            $this->getEntityManager()->flush();
+    //        }
+    //    }
+    //
+    //    /**
+    //     * Remove record.
+    //     *
+    //     * @param Category $entity Category entity
+    //     */
+    //    public function remove(Category $entity, bool $flush = false): void
+    //    {
+    //        $this->getEntityManager()->remove($entity);
+    //
+    //        if ($flush) {
+    //            $this->getEntityManager()->flush();
+    //        }
+    //    }
 
-//    public function findOneBySomeField($value): ?Category
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Category[] Returns an array of Category objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Category
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

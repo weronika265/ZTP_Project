@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User entity.
  */
@@ -31,9 +32,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Email.
      */
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
     #[Assert\NotBlank]
     #[Assert\Email]
+    #[Assert\Length(max: 50)]
     private ?string $email;
 
     /**
@@ -155,7 +157,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
-     * @see UserInterface
+     * @return string|null Salt
      */
     public function getSalt(): ?string
     {

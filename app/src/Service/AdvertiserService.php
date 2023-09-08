@@ -8,7 +8,6 @@ namespace App\Service;
 
 use App\Entity\Advertiser;
 use App\Repository\AdvertiserRepository;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class AdvertiserService.
@@ -24,12 +23,10 @@ class AdvertiserService implements AdvertiserServiceInterface
      * Constructor.
      *
      * @param AdvertiserRepository $advertiserRepository Advertiser repository
-     * @param PaginatorInterface   $paginator            Paginator
      */
-    public function __construct(AdvertiserRepository $advertiserRepository, PaginatorInterface $paginator)
+    public function __construct(AdvertiserRepository $advertiserRepository)
     {
         $this->advertiserRepository = $advertiserRepository;
-        $this->paginator = $paginator;
     }
 
     /**

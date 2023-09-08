@@ -32,7 +32,7 @@ interface UserServiceInterface
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function savePassword(User $user);
+    public function savePassword(User $user): void;
 
     /**
      * Get current user.

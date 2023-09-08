@@ -23,7 +23,11 @@ class AdvertiserFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        $this->createMany(25, 'advertisers', function (int $i) {
+        if (null === $this->manager || null === $this->faker) {
+            return;
+        }
+
+        $this->createMany(25, 'advertisers', function () {
             $advertiser = new Advertiser();
             $advertiser->setEmail($this->faker->email);
             $advertiser->setPhone($this->faker->e164PhoneNumber);

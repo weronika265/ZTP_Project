@@ -37,14 +37,12 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Constructor.
      *
-     * @param CategoryRepository $categoryRepository Category repository
-     * @param PaginatorInterface $paginator          Paginator
+     * @param CategoryRepository      $categoryRepository      Category repository
+     * @param AdvertisementRepository $advertisementRepository Advertisement repository
+     * @param PaginatorInterface      $paginator               Paginator
      */
-    public function __construct(
-        CategoryRepository $categoryRepository,
-        AdvertisementRepository $advertisementRepository,
-        PaginatorInterface $paginator
-    ) {
+    public function __construct(CategoryRepository $categoryRepository, AdvertisementRepository $advertisementRepository, PaginatorInterface $paginator)
+    {
         $this->categoryRepository = $categoryRepository;
         $this->paginator = $paginator;
         $this->advertisementRepository = $advertisementRepository;
