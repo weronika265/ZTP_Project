@@ -38,10 +38,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Save record.
      *
-     * @param \App\Entity\User $user User entity
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @param User $user User entity
      */
     public function save(User $user): void
     {
@@ -52,10 +49,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Delete record.
      *
-     * @param \App\Entity\User $user User entity
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @param User $user User entity
      */
     public function delete(User $user): void
     {
@@ -69,11 +63,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * @param PasswordAuthenticatedUserInterface $user              User
      * @param string                             $newHashedPassword New hashed password
      * @param bool                               $withFlush         Flush
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword, $withFlush = true): void
+    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword, bool $withFlush = true): void
     {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));

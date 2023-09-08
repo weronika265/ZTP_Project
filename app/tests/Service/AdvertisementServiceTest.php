@@ -19,7 +19,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -98,7 +97,6 @@ class AdvertisementServiceTest extends KernelTestCase
      * Test delete.
      *
      * @throws NonUniqueResultException
-     * @throws OptimisticLockException|ORMException
      */
     public function testDelete(): void
     {

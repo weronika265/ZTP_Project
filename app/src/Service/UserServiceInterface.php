@@ -18,9 +18,6 @@ interface UserServiceInterface
      * Save user.
      *
      * @param User $user User entity
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save(User $user): void;
 
@@ -28,9 +25,6 @@ interface UserServiceInterface
      * Save user password.
      *
      * @param User $user User entity
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function savePassword(User $user): void;
 

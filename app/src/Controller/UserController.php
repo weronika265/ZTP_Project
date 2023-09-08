@@ -9,9 +9,12 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\Type\UserPasswordType;
 use App\Form\Type\UserType;
+use App\Service\AdvertisementService;
 use App\Service\AdvertisementServiceInterface;
 use App\Service\UserService;
 use App\Service\UserServiceInterface;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,16 +30,21 @@ class UserController extends AbstractController
     /**
      * User service.
      *
-     * @var \App\Service\UserService User service
+     * @var UserService User service
      */
     private UserServiceInterface $userService;
 
     /**
      * Advertisement service.
      *
-     * @var \App\Service\AdvertisementService Advertisement service
+     * @var AdvertisementService Advertisement service
      */
     private AdvertisementServiceInterface $advertisementService;
+
+    /**
+     * Translator.
+     */
+    private TranslatorInterface $translator;
 
     /**
      * Constructor.
@@ -57,11 +65,11 @@ class UserController extends AbstractController
      *
      * @param Request $request HTTP Request
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      */
     #[Route(
         name: 'user_index',
-        methods: 'GET'
+        methods: 'GET',
     )]
     public function index(Request $request): Response
     {
@@ -83,21 +91,20 @@ class UserController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Entity\User                          $user    User entity
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     *
-     * @Route(
-     *     "/{id}/edit",
-     *     methods={"GET", "PUT"},
-     *     requirements={"id": "[1-9]\d*"},
-     *     name="user_edit",
-     * )
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
+    #[Route(
+        '/{id}/edit',
+        name: 'user_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT',
+    )]
     public function edit(Request $request, User $user): Response
     {
         $form = $this->createForm(UserType::class, $user, ['method' => 'PUT']);

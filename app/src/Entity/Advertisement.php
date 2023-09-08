@@ -7,7 +7,6 @@
 namespace App\Entity;
 
 use App\Repository\AdvertisementRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -87,12 +86,12 @@ class Advertisement
      * @var bool|null Is active
      */
     #[ORM\Column]
-    private ?bool $is_active = null;
+    private ?bool $isActive = null;
 
     /**
      * Category.
      *
-     * @var \App\Entity\Category|null Category entity
+     * @var Category|null Category entity
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
@@ -102,7 +101,7 @@ class Advertisement
     /**
      * Advertiser.
      *
-     * @var \App\Entity\Advertiser|null Advertiser entity
+     * @var Advertiser|null Advertiser entity
      */
     #[ORM\ManyToOne(targetEntity: Advertiser::class, cascade: ['persist'], fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
@@ -227,17 +226,17 @@ class Advertisement
      */
     public function isIsActive(): ?bool
     {
-        return $this->is_active;
+        return $this->isActive;
     }
 
     /**
      * Setter for is active.
      *
-     * @param bool $is_active Is active
+     * @param bool $isActive Is active
      */
-    public function setIsActive(bool $is_active): void
+    public function setIsActive(bool $isActive): void
     {
-        $this->is_active = $is_active;
+        $this->isActive = $isActive;
     }
 
     /**

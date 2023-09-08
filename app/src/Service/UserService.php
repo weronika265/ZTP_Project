@@ -20,7 +20,7 @@ class UserService implements UserServiceInterface
     /**
      * User repository.
      *
-     * @var \App\Repository\UserRepository User repository
+     * @var UserRepository User repository
      */
     private UserRepository $userRepository;
 
@@ -33,8 +33,10 @@ class UserService implements UserServiceInterface
 
     /**
      * Security.
+     *
+     * @var Security security
      */
-    private $security;
+    private Security $security;
 
     /**
      * Constructor.
@@ -54,9 +56,6 @@ class UserService implements UserServiceInterface
      * Save user.
      *
      * @param User $user User entity
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save(User $user): void
     {
@@ -67,9 +66,6 @@ class UserService implements UserServiceInterface
      * Save user password.
      *
      * @param User $user User entity
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function savePassword(User $user): void
     {

@@ -53,9 +53,6 @@ class AdvertiserService implements AdvertiserServiceInterface
      * @param string $email Advertiser email
      *
      * @return Advertiser|null Advertiser entity
-     *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function advertiserEmailExists(string $email): Advertiser|null
     {

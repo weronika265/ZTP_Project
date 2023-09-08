@@ -10,7 +10,6 @@ use App\Entity\Advertisement;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class AdvertisementVoter.
@@ -86,17 +85,15 @@ class AdvertisementVoter extends Voter
      */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
-        $user = $token->getUser();
-
         switch ($attribute) {
             case self::EDIT:
-                return $this->canEdit($subject, $user);
+                return $this->canEdit($subject);
             case self::VIEW:
-                return $this->canView($subject, $user);
+                return $this->canView($subject);
             case self::DELETE:
-                return $this->canDelete($user);
+                return $this->canDelete();
             case self::ACCEPT:
-                return $this->canAccept($user);
+                return $this->canAccept();
         }
 
         return false;
@@ -105,12 +102,11 @@ class AdvertisementVoter extends Voter
     /**
      * Checks if user can edit advertisement.
      *
-     * @param Advertisement      $advertisement Advertisement entity
-     * @param UserInterface|null $user          User
+     * @param Advertisement $advertisement Advertisement entity
      *
      * @return bool Result
      */
-    private function canEdit(Advertisement $advertisement, UserInterface $user = null): bool
+    private function canEdit(Advertisement $advertisement): bool
     {
         return true === $advertisement->isIsActive() && $this->security->isGranted('ROLE_ADMIN');
     }
@@ -118,12 +114,11 @@ class AdvertisementVoter extends Voter
     /**
      * Checks if user can view advertisement.
      *
-     * @param Advertisement      $advertisement Advertisement entity
-     * @param UserInterface|null $user          User
+     * @param Advertisement $advertisement Advertisement entity
      *
      * @return bool Result
      */
-    private function canView(Advertisement $advertisement, UserInterface $user = null): bool
+    private function canView(Advertisement $advertisement): bool
     {
         return (true === $advertisement->isIsActive()) || (false === $advertisement->isIsActive() && $this->security->isGranted('ROLE_ADMIN'));
     }
@@ -131,11 +126,9 @@ class AdvertisementVoter extends Voter
     /**
      * Checks if user can delete advertisement.
      *
-     * @param UserInterface|null $user User
-     *
      * @return bool Result
      */
-    private function canDelete(UserInterface $user = null): bool
+    private function canDelete(): bool
     {
         return $this->security->isGranted('ROLE_ADMIN');
     }
@@ -143,11 +136,9 @@ class AdvertisementVoter extends Voter
     /**
      * Checks if user can create advertisement.
      *
-     * @param UserInterface|null $user User
-     *
      * @return bool Result
      */
-    private function canAccept(UserInterface $user = null): bool
+    private function canAccept(): bool
     {
         return $this->security->isGranted('ROLE_ADMIN');
     }

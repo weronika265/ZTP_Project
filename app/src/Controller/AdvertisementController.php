@@ -139,6 +139,7 @@ class AdvertisementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
             $email = $formData->getAdvertiser()->getEmail();
+
             $existingAdvertiser = $this->advertiserService->advertiserEmailExists($email);
             if ($existingAdvertiser) {
                 $advertisement->setAdvertiser($existingAdvertiser);

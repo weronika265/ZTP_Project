@@ -7,11 +7,9 @@
 namespace App\Security\Voter;
 
 use App\Entity\Category;
-use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class CategoryVoter.
@@ -80,18 +78,13 @@ class CategoryVoter extends Voter
      */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
-        $user = $token->getUser();
-        if (!$user instanceof UserInterface) {
-            return false;
-        }
-
         switch ($attribute) {
             case self::EDIT:
-                return $this->canEdit($user);
+                return $this->canEdit();
             case self::DELETE:
-                return $this->canDelete($user);
+                return $this->canDelete();
             case self::CREATE:
-                return $this->canCreate($user);
+                return $this->canCreate();
         }
 
         return false;
@@ -100,36 +93,30 @@ class CategoryVoter extends Voter
     /**
      * Checks if user can edit category.
      *
-     * @param UserInterface $user User
-     *
      * @return bool Result
      */
-    private function canEdit(UserInterface $user): bool
+    private function canEdit(): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 
     /**
      * Checks if user can delete category.
      *
-     * @param UserInterface $user User
-     *
      * @return bool Result
      */
-    private function canDelete(UserInterface $user): bool
+    private function canDelete(): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 
     /**
      * Checks if user can create category.
      *
-     * @param UserInterface $user User
-     *
      * @return bool Result
      */
-    private function canCreate(UserInterface $user): bool
+    private function canCreate(): bool
     {
-        return in_array('ROLE_ADMIN', $user->getRoles());
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 }

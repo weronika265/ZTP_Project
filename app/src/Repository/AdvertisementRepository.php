@@ -56,7 +56,7 @@ class AdvertisementRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial advertisement.{id, name, description, price, location, date, is_active}',
+                'partial advertisement.{id, name, description, price, location, date, isActive}',
                 'partial advertiser.{id, email, phone, name}',
                 'partial category.{id, name}'
             )
@@ -123,54 +123,54 @@ class AdvertisementRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial advertisement.{id, name, description, price, location, date, is_active}',
+                'partial advertisement.{id, name, description, price, location, date, isActive}',
                 'partial advertiser.{id, email, phone, name}',
             )
             ->join('advertisement.advertiser', 'advertiser')
             ->where('advertisement.category = :category')
-            ->andWhere('advertisement.is_active = :is_active')
+            ->andWhere('advertisement.isActive = :isActive')
             ->setParameter(':category', $category)
-            ->setParameter(':is_active', 1)
+            ->setParameter(':isActive', 1)
             ->orderBy('advertisement.date', 'DESC');
     }
 
     /**
      * Get advertisements by inactive status.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     public function getByUnacceptedEntity(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial advertisement.{id, name, description, price, location, date, is_active}',
+                'partial advertisement.{id, name, description, price, location, date, isActive}',
                 'partial advertiser.{id, email, phone, name}',
                 'partial category.{id, name}'
             )
             ->join('advertisement.advertiser', 'advertiser')
             ->join('advertisement.category', 'category')
-            ->where('advertisement.is_active = :is_active')
-            ->setParameter(':is_active', 0)
+            ->where('advertisement.isActive = :isActive')
+            ->setParameter(':isActive', 0)
             ->orderBy('advertisement.date', 'DESC');
     }
 
     /**
      * Get advertisements by inactive status.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     public function getByAcceptedEntity(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial advertisement.{id, name, description, price, location, date, is_active}',
+                'partial advertisement.{id, name, description, price, location, date, isActive}',
                 'partial advertiser.{id, email, phone, name}',
                 'partial category.{id, name}'
             )
             ->join('advertisement.advertiser', 'advertiser')
             ->join('advertisement.category', 'category')
-            ->where('advertisement.is_active = :is_active')
-            ->setParameter(':is_active', 1)
+            ->where('advertisement.isActive = :isActive')
+            ->setParameter(':isActive', 1)
             ->orderBy('advertisement.date', 'DESC');
     }
 
