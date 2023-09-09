@@ -115,12 +115,18 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->save($user);
-            $this->translator->trans('message.updated_successfully');
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.updated_successfully')
+            );
         }
 
         if ($formPass->isSubmitted() && $formPass->isValid()) {
             $this->userService->savePassword($user);
-            $this->translator->trans('message.updated_successfully');
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.updated_successfully')
+            );
         }
 
         return $this->render(
