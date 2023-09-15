@@ -32,6 +32,8 @@ class AdvertiserController extends AbstractController
     private TranslatorInterface $translator;
 
     /**
+     * Constructor.
+     *
      * @param AdvertiserServiceInterface $advertiserService Advertiser service
      * @param TranslatorInterface        $translator        Translator
      */

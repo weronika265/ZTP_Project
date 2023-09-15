@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/wwwroot/app/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=9.2.27" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=9.2.27" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=9.2.27" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/home/wwwroot/app/src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/AdvertiserController.php.html#21">App\Controller\AdvertiserController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#26">App\Repository\UserRepository</a></td><td class="text-right">27%</td></tr>
+       <tr><td><a href="Service/UserService.php.html#18">App\Service\UserService</a></td><td class="text-right">41%</td></tr>
+       <tr><td><a href="Controller/AdvertisementController.php.html#25">App\Controller\AdvertisementController</a></td><td class="text-right">44%</td></tr>
+       <tr><td><a href="Security/Voter/AdvertisementVoter.php.html#17">App\Security\Voter\AdvertisementVoter</a></td><td class="text-right">58%</td></tr>
+       <tr><td><a href="Entity/Category.php.html#20">App\Entity\Category</a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Security/Voter/CategoryVoter.php.html#17">App\Security\Voter\CategoryVoter</a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="Entity/Advertiser.php.html#18">App\Entity\Advertiser</a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#17">App\Controller\SecurityController</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Entity/User.php.html#19">App\Entity\User</a></td><td class="text-right">84%</td></tr>
+       <tr><td><a href="Service/CategoryService.php.html#20">App\Service\CategoryService</a></td><td class="text-right">85%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#27">App\Controller\UserController</a></td><td class="text-right">86%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#25">App\Security\LoginFormAuthenticator</a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Service/AdvertisementService.php.html#18">App\Service\AdvertisementService</a></td><td class="text-right">89%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/AdvertisementController.php.html#25">App\Controller\AdvertisementController</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Controller/AdvertiserController.php.html#21">App\Controller\AdvertiserController</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Security/Voter/AdvertisementVoter.php.html#17">App\Security\Voter\AdvertisementVoter</a></td><td class="text-right">31</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#26">App\Repository\UserRepository</a></td><td class="text-right">19</td></tr>
+       <tr><td><a href="Service/UserService.php.html#18">App\Service\UserService</a></td><td class="text-right">13</td></tr>
+       <tr><td><a href="Security/Voter/CategoryVoter.php.html#17">App\Security\Voter\CategoryVoter</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Service/AdvertisementService.php.html#18">App\Service\AdvertisementService</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#27">App\Controller\UserController</a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#25">App\Security\LoginFormAuthenticator</a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Service/CategoryService.php.html#20">App\Service\CategoryService</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/AdvertisementController.php.html#214"><abbr title="App\Controller\AdvertisementController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdvertisementController.php.html#252"><abbr title="App\Controller\AdvertisementController::accept">accept</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdvertisementController.php.html#295"><abbr title="App\Controller\AdvertisementController::reject">reject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdvertiserController.php.html#38"><abbr title="App\Controller\AdvertiserController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdvertiserController.php.html#51"><abbr title="App\Controller\AdvertiserController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdvertiserController.php.html#91"><abbr title="App\Controller\AdvertiserController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#44"><abbr title="App\Controller\SecurityController::logout">logout</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Advertiser.php.html#111"><abbr title="App\Entity\Advertiser::setPhone">setPhone</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Advertiser.php.html#131"><abbr title="App\Entity\Advertiser::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Category.php.html#91"><abbr title="App\Entity\Category::getSlug">getSlug</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Category.php.html#101"><abbr title="App\Entity\Category::setSlug">setSlug</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#103"><abbr title="App\Entity\User::getUsername">getUsername</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#129"><abbr title="App\Entity\User::setRoles">setRoles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#54"><abbr title="App\Repository\UserRepository::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#67"><abbr title="App\Repository\UserRepository::upgradePassword">upgradePassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#138"><abbr title="App\Security\LoginFormAuthenticator::getLoginUrl">getLoginUrl</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/Voter/AdvertisementVoter.php.html#131"><abbr title="App\Security\Voter\AdvertisementVoter::canDelete">canDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/Voter/AdvertisementVoter.php.html#141"><abbr title="App\Security\Voter\AdvertisementVoter::canAccept">canAccept</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/Voter/CategoryVoter.php.html#118"><abbr title="App\Security\Voter\CategoryVoter::canCreate">canCreate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/AdvertisementService.php.html#71"><abbr title="App\Service\AdvertisementService::accept">accept</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/UserService.php.html#70"><abbr title="App\Service\UserService::savePassword">savePassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/UserService.php.html#97"><abbr title="App\Service\UserService::hashPassword">hashPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/Voter/AdvertisementVoter.php.html#86"><abbr title="App\Security\Voter\AdvertisementVoter::voteOnAttribute">voteOnAttribute</abbr></a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Security/Voter/CategoryVoter.php.html#79"><abbr title="App\Security\Voter\CategoryVoter::voteOnAttribute">voteOnAttribute</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Service/CategoryService.php.html#78"><abbr title="App\Service\CategoryService::canBeDeleted">canBeDeleted</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#122"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/AdvertisementController.php.html#172"><abbr title="App\Controller\AdvertisementController::edit">edit</abbr></a></td><td class="text-right">73%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#102"><abbr title="App\Controller\UserController::edit">edit</abbr></a></td><td class="text-right">79%</td></tr>
+       <tr><td><a href="Controller/CategoryController.php.html#195"><abbr title="App\Controller\CategoryController::delete">delete</abbr></a></td><td class="text-right">80%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/AdvertisementController.php.html#214"><abbr title="App\Controller\AdvertisementController::delete">delete</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/AdvertisementController.php.html#252"><abbr title="App\Controller\AdvertisementController::accept">accept</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/AdvertisementController.php.html#295"><abbr title="App\Controller\AdvertisementController::reject">reject</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/AdvertiserController.php.html#51"><abbr title="App\Controller\AdvertiserController::create">create</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/AdvertiserController.php.html#91"><abbr title="App\Controller\AdvertiserController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#67"><abbr title="App\Repository\UserRepository::upgradePassword">upgradePassword</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Security/Voter/AdvertisementVoter.php.html#86"><abbr title="App\Security\Voter\AdvertisementVoter::voteOnAttribute">voteOnAttribute</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Security/Voter/CategoryVoter.php.html#79"><abbr title="App\Security\Voter\CategoryVoter::voteOnAttribute">voteOnAttribute</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Service/AdvertisementService.php.html#71"><abbr title="App\Service\AdvertisementService::accept">accept</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Service/UserService.php.html#70"><abbr title="App\Service\UserService::savePassword">savePassword</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#102"><abbr title="App\Controller\UserController::edit">edit</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Controller/CategoryController.php.html#195"><abbr title="App\Controller\CategoryController::delete">delete</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Controller/AdvertisementController.php.html#172"><abbr title="App\Controller\AdvertisementController::edit">edit</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Service/CategoryService.php.html#78"><abbr title="App\Service\CategoryService::canBeDeleted">canBeDeleted</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#122"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.27</a> using <a href="https://secure.php.net/" target="_top">PHP 8.1.19</a> and <a href="https://phpunit.de/">PHPUnit 9.6.11</a> at Sun Sep 10 21:07:25 UTC 2023.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=9.2.27" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=9.2.27" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=9.2.27" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([1,0,0,1,0,2,1,1,3,5,1,12], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([22,0,0,0,0,1,2,1,2,1,1,110], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[44,20,"<a href=\"Controller\/AdvertisementController.php.html#25\">App\\Controller\\AdvertisementController<\/a>"],[0,7,"<a href=\"Controller\/AdvertiserController.php.html#21\">App\\Controller\\AdvertiserController<\/a>"],[94.31818181818183,13,"<a href=\"Controller\/CategoryController.php.html#24\">App\\Controller\\CategoryController<\/a>"],[100,1,"<a href=\"Controller\/HomeController.php.html#15\">App\\Controller\\HomeController<\/a>"],[75,2,"<a href=\"Controller\/SecurityController.php.html#17\">App\\Controller\\SecurityController<\/a>"],[86.8421052631579,7,"<a href=\"Controller\/UserController.php.html#27\">App\\Controller\\UserController<\/a>"],[100,17,"<a href=\"Entity\/Advertisement.php.html#18\">App\\Entity\\Advertisement<\/a>"],[71.42857142857143,7,"<a href=\"Entity\/Advertiser.php.html#18\">App\\Entity\\Advertiser<\/a>"],[60,5,"<a href=\"Entity\/Category.php.html#20\">App\\Entity\\Category<\/a>"],[84.61538461538461,11,"<a href=\"Entity\/User.php.html#19\">App\\Entity\\User<\/a>"],[100,3,"<a href=\"Form\/Type\/AdvertisementType.php.html#20\">App\\Form\\Type\\AdvertisementType<\/a>"],[100,3,"<a href=\"Form\/Type\/AdvertiserType.php.html#19\">App\\Form\\Type\\AdvertiserType<\/a>"],[100,3,"<a href=\"Form\/Type\/CategoryType.php.html#17\">App\\Form\\Type\\CategoryType<\/a>"],[100,3,"<a href=\"Form\/Type\/UserPasswordType.php.html#19\">App\\Form\\Type\\UserPasswordType<\/a>"],[100,3,"<a href=\"Form\/Type\/UserType.php.html#18\">App\\Form\\Type\\UserType<\/a>"],[100,10,"<a href=\"Repository\/AdvertisementRepository.php.html#27\">App\\Repository\\AdvertisementRepository<\/a>"],[100,3,"<a href=\"Repository\/AdvertiserRepository.php.html#23\">App\\Repository\\AdvertiserRepository<\/a>"],[100,5,"<a href=\"Repository\/CategoryRepository.php.html#24\">App\\Repository\\CategoryRepository<\/a>"],[27.27272727272727,6,"<a href=\"Repository\/UserRepository.php.html#26\">App\\Repository\\UserRepository<\/a>"],[87.5,7,"<a href=\"Security\/LoginFormAuthenticator.php.html#25\">App\\Security\\LoginFormAuthenticator<\/a>"],[58.333333333333336,15,"<a href=\"Security\/Voter\/AdvertisementVoter.php.html#17\">App\\Security\\Voter\\AdvertisementVoter<\/a>"],[70,10,"<a href=\"Security\/Voter\/CategoryVoter.php.html#17\">App\\Security\\Voter\\CategoryVoter<\/a>"],[89.65517241379311,10,"<a href=\"Service\/AdvertisementService.php.html#18\">App\\Service\\AdvertisementService<\/a>"],[100,4,"<a href=\"Service\/AdvertiserService.php.html#15\">App\\Service\\AdvertiserService<\/a>"],[85.71428571428571,6,"<a href=\"Service\/CategoryService.php.html#20\">App\\Service\\CategoryService<\/a>"],[41.66666666666667,6,"<a href=\"Service\/UserService.php.html#18\">App\\Service\\UserService<\/a>"],[100,1,"<a href=\"Entity\/Enum\/UserRole.php.html#11\">App\\Entity\\Enum\\UserRole<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Controller\/AdvertisementController.php.html#56\">App\\Controller\\AdvertisementController::__construct<\/a>"],[100,1,"<a href=\"Controller\/AdvertisementController.php.html#71\">App\\Controller\\AdvertisementController::index<\/a>"],[100,1,"<a href=\"Controller\/AdvertisementController.php.html#94\">App\\Controller\\AdvertisementController::show<\/a>"],[92,5,"<a href=\"Controller\/AdvertisementController.php.html#120\">App\\Controller\\AdvertisementController::create<\/a>"],[73.91304347826086,3,"<a href=\"Controller\/AdvertisementController.php.html#172\">App\\Controller\\AdvertisementController::edit<\/a>"],[0,3,"<a href=\"Controller\/AdvertisementController.php.html#214\">App\\Controller\\AdvertisementController::delete<\/a>"],[0,3,"<a href=\"Controller\/AdvertisementController.php.html#252\">App\\Controller\\AdvertisementController::accept<\/a>"],[0,3,"<a href=\"Controller\/AdvertisementController.php.html#295\">App\\Controller\\AdvertisementController::reject<\/a>"],[0,1,"<a href=\"Controller\/AdvertiserController.php.html#38\">App\\Controller\\AdvertiserController::__construct<\/a>"],[0,3,"<a href=\"Controller\/AdvertiserController.php.html#51\">App\\Controller\\AdvertiserController::create<\/a>"],[0,3,"<a href=\"Controller\/AdvertiserController.php.html#91\">App\\Controller\\AdvertiserController::edit<\/a>"],[100,1,"<a href=\"Controller\/CategoryController.php.html#43\">App\\Controller\\CategoryController::__construct<\/a>"],[100,1,"<a href=\"Controller\/CategoryController.php.html#56\">App\\Controller\\CategoryController::index<\/a>"],[100,1,"<a href=\"Controller\/CategoryController.php.html#81\">App\\Controller\\CategoryController::show<\/a>"],[100,3,"<a href=\"Controller\/CategoryController.php.html#110\">App\\Controller\\CategoryController::create<\/a>"],[100,3,"<a href=\"Controller\/CategoryController.php.html#150\">App\\Controller\\CategoryController::edit<\/a>"],[80.76923076923077,4,"<a href=\"Controller\/CategoryController.php.html#195\">App\\Controller\\CategoryController::delete<\/a>"],[100,1,"<a href=\"Controller\/HomeController.php.html#28\">App\\Controller\\HomeController::index<\/a>"],[100,1,"<a href=\"Controller\/SecurityController.php.html#26\">App\\Controller\\SecurityController::login<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#44\">App\\Controller\\SecurityController::logout<\/a>"],[100,1,"<a href=\"Controller\/UserController.php.html#56\">App\\Controller\\UserController::__construct<\/a>"],[100,1,"<a href=\"Controller\/UserController.php.html#70\">App\\Controller\\UserController::index<\/a>"],[79.16666666666666,5,"<a href=\"Controller\/UserController.php.html#102\">App\\Controller\\UserController::edit<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#117\">App\\Entity\\Advertisement::getId<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#127\">App\\Entity\\Advertisement::getName<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#137\">App\\Entity\\Advertisement::setName<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#147\">App\\Entity\\Advertisement::getDescription<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#157\">App\\Entity\\Advertisement::setDescription<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#167\">App\\Entity\\Advertisement::getPrice<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#177\">App\\Entity\\Advertisement::setPrice<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#187\">App\\Entity\\Advertisement::getLocation<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#197\">App\\Entity\\Advertisement::setLocation<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#207\">App\\Entity\\Advertisement::getDate<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#217\">App\\Entity\\Advertisement::setDate<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#227\">App\\Entity\\Advertisement::isIsActive<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#237\">App\\Entity\\Advertisement::setIsActive<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#247\">App\\Entity\\Advertisement::getCategory<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#257\">App\\Entity\\Advertisement::setCategory<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#267\">App\\Entity\\Advertisement::getAdvertiser<\/a>"],[100,1,"<a href=\"Entity\/Advertisement.php.html#277\">App\\Entity\\Advertisement::setAdvertiser<\/a>"],[100,1,"<a href=\"Entity\/Advertiser.php.html#71\">App\\Entity\\Advertiser::getId<\/a>"],[100,1,"<a href=\"Entity\/Advertiser.php.html#81\">App\\Entity\\Advertiser::getEmail<\/a>"],[100,1,"<a href=\"Entity\/Advertiser.php.html#91\">App\\Entity\\Advertiser::setEmail<\/a>"],[100,1,"<a href=\"Entity\/Advertiser.php.html#101\">App\\Entity\\Advertiser::getPhone<\/a>"],[0,1,"<a href=\"Entity\/Advertiser.php.html#111\">App\\Entity\\Advertiser::setPhone<\/a>"],[100,1,"<a href=\"Entity\/Advertiser.php.html#121\">App\\Entity\\Advertiser::getName<\/a>"],[0,1,"<a href=\"Entity\/Advertiser.php.html#131\">App\\Entity\\Advertiser::setName<\/a>"],[100,1,"<a href=\"Entity\/Category.php.html#61\">App\\Entity\\Category::getId<\/a>"],[100,1,"<a href=\"Entity\/Category.php.html#71\">App\\Entity\\Category::getName<\/a>"],[100,1,"<a href=\"Entity\/Category.php.html#81\">App\\Entity\\Category::setName<\/a>"],[0,1,"<a href=\"Entity\/Category.php.html#91\">App\\Entity\\Category::getSlug<\/a>"],[0,1,"<a href=\"Entity\/Category.php.html#101\">App\\Entity\\Category::setSlug<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#61\">App\\Entity\\User::getId<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#71\">App\\Entity\\User::getEmail<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#81\">App\\Entity\\User::setEmail<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#93\">App\\Entity\\User::getUserIdentifier<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#103\">App\\Entity\\User::getUsername<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#115\">App\\Entity\\User::getRoles<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#129\">App\\Entity\\User::setRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#141\">App\\Entity\\User::getPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#151\">App\\Entity\\User::setPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#162\">App\\Entity\\User::getSalt<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#172\">App\\Entity\\User::eraseCredentials<\/a>"],[100,1,"<a href=\"Form\/Type\/AdvertisementType.php.html#33\">App\\Form\\Type\\AdvertisementType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/AdvertisementType.php.html#95\">App\\Form\\Type\\AdvertisementType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/AdvertisementType.php.html#108\">App\\Form\\Type\\AdvertisementType::getBlockPrefix<\/a>"],[100,1,"<a href=\"Form\/Type\/AdvertiserType.php.html#32\">App\\Form\\Type\\AdvertiserType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/AdvertiserType.php.html#69\">App\\Form\\Type\\AdvertiserType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/AdvertiserType.php.html#82\">App\\Form\\Type\\AdvertiserType::getBlockPrefix<\/a>"],[100,1,"<a href=\"Form\/Type\/CategoryType.php.html#30\">App\\Form\\Type\\CategoryType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/CategoryType.php.html#48\">App\\Form\\Type\\CategoryType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/CategoryType.php.html#61\">App\\Form\\Type\\CategoryType::getBlockPrefix<\/a>"],[100,1,"<a href=\"Form\/Type\/UserPasswordType.php.html#32\">App\\Form\\Type\\UserPasswordType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/UserPasswordType.php.html#53\">App\\Form\\Type\\UserPasswordType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/UserPasswordType.php.html#66\">App\\Form\\Type\\UserPasswordType::getBlockPrefix<\/a>"],[100,1,"<a href=\"Form\/Type\/UserType.php.html#31\">App\\Form\\Type\\UserType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/UserType.php.html#49\">App\\Form\\Type\\UserType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/UserType.php.html#62\">App\\Form\\Type\\UserType::getBlockPrefix<\/a>"],[100,1,"<a href=\"Repository\/AdvertisementRepository.php.html#45\">App\\Repository\\AdvertisementRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/AdvertisementRepository.php.html#55\">App\\Repository\\AdvertisementRepository::queryAll<\/a>"],[100,2,"<a href=\"Repository\/AdvertisementRepository.php.html#73\">App\\Repository\\AdvertisementRepository::save<\/a>"],[100,1,"<a href=\"Repository\/AdvertisementRepository.php.html#88\">App\\Repository\\AdvertisementRepository::delete<\/a>"],[100,1,"<a href=\"Repository\/AdvertisementRepository.php.html#104\">App\\Repository\\AdvertisementRepository::countByCategory<\/a>"],[100,1,"<a href=\"Repository\/AdvertisementRepository.php.html#122\">App\\Repository\\AdvertisementRepository::getByCategory<\/a>"],[100,1,"<a href=\"Repository\/AdvertisementRepository.php.html#142\">App\\Repository\\AdvertisementRepository::getByUnacceptedEntity<\/a>"],[100,1,"<a href=\"Repository\/AdvertisementRepository.php.html#162\">App\\Repository\\AdvertisementRepository::getByAcceptedEntity<\/a>"],[100,1,"<a href=\"Repository\/AdvertisementRepository.php.html#184\">App\\Repository\\AdvertisementRepository::getOrCreateQueryBuilder<\/a>"],[100,1,"<a href=\"Repository\/AdvertiserRepository.php.html#30\">App\\Repository\\AdvertiserRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/AdvertiserRepository.php.html#40\">App\\Repository\\AdvertiserRepository::save<\/a>"],[100,1,"<a href=\"Repository\/AdvertiserRepository.php.html#51\">App\\Repository\\AdvertiserRepository::delete<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#42\">App\\Repository\\CategoryRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#52\">App\\Repository\\CategoryRepository::queryAll<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#64\">App\\Repository\\CategoryRepository::save<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#75\">App\\Repository\\CategoryRepository::delete<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#88\">App\\Repository\\CategoryRepository::getOrCreateQueryBuilder<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#33\">App\\Repository\\UserRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#43\">App\\Repository\\UserRepository::save<\/a>"],[0,1,"<a href=\"Repository\/UserRepository.php.html#54\">App\\Repository\\UserRepository::delete<\/a>"],[0,3,"<a href=\"Repository\/UserRepository.php.html#67\">App\\Repository\\UserRepository::upgradePassword<\/a>"],[100,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#53\">App\\Security\\LoginFormAuthenticator::__construct<\/a>"],[100,2,"<a href=\"Security\/LoginFormAuthenticator.php.html#67\">App\\Security\\LoginFormAuthenticator::supports<\/a>"],[100,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#90\">App\\Security\\LoginFormAuthenticator::authenticate<\/a>"],[66.66666666666666,2,"<a href=\"Security\/LoginFormAuthenticator.php.html#122\">App\\Security\\LoginFormAuthenticator::onAuthenticationSuccess<\/a>"],[0,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#138\">App\\Security\\LoginFormAuthenticator::getLoginUrl<\/a>"],[100,1,"<a href=\"Security\/Voter\/AdvertisementVoter.php.html#57\">App\\Security\\Voter\\AdvertisementVoter::__construct<\/a>"],[100,2,"<a href=\"Security\/Voter\/AdvertisementVoter.php.html#70\">App\\Security\\Voter\\AdvertisementVoter::supports<\/a>"],[40,5,"<a href=\"Security\/Voter\/AdvertisementVoter.php.html#86\">App\\Security\\Voter\\AdvertisementVoter::voteOnAttribute<\/a>"],[100,2,"<a href=\"Security\/Voter\/AdvertisementVoter.php.html#109\">App\\Security\\Voter\\AdvertisementVoter::canEdit<\/a>"],[100,3,"<a href=\"Security\/Voter\/AdvertisementVoter.php.html#121\">App\\Security\\Voter\\AdvertisementVoter::canView<\/a>"],[0,1,"<a href=\"Security\/Voter\/AdvertisementVoter.php.html#131\">App\\Security\\Voter\\AdvertisementVoter::canDelete<\/a>"],[0,1,"<a href=\"Security\/Voter\/AdvertisementVoter.php.html#141\">App\\Security\\Voter\\AdvertisementVoter::canAccept<\/a>"],[100,1,"<a href=\"Security\/Voter\/CategoryVoter.php.html#50\">App\\Security\\Voter\\CategoryVoter::__construct<\/a>"],[100,2,"<a href=\"Security\/Voter\/CategoryVoter.php.html#63\">App\\Security\\Voter\\CategoryVoter::supports<\/a>"],[50,4,"<a href=\"Security\/Voter\/CategoryVoter.php.html#79\">App\\Security\\Voter\\CategoryVoter::voteOnAttribute<\/a>"],[100,1,"<a href=\"Security\/Voter\/CategoryVoter.php.html#98\">App\\Security\\Voter\\CategoryVoter::canEdit<\/a>"],[100,1,"<a href=\"Security\/Voter\/CategoryVoter.php.html#108\">App\\Security\\Voter\\CategoryVoter::canDelete<\/a>"],[0,1,"<a href=\"Security\/Voter\/CategoryVoter.php.html#118\">App\\Security\\Voter\\CategoryVoter::canCreate<\/a>"],[100,1,"<a href=\"Service\/AdvertisementService.php.html#36\">App\\Service\\AdvertisementService::__construct<\/a>"],[100,2,"<a href=\"Service\/AdvertisementService.php.html#47\">App\\Service\\AdvertisementService::save<\/a>"],[100,1,"<a href=\"Service\/AdvertisementService.php.html#61\">App\\Service\\AdvertisementService::delete<\/a>"],[0,2,"<a href=\"Service\/AdvertisementService.php.html#71\">App\\Service\\AdvertisementService::accept<\/a>"],[100,1,"<a href=\"Service\/AdvertisementService.php.html#87\">App\\Service\\AdvertisementService::getPaginatedList<\/a>"],[100,1,"<a href=\"Service\/AdvertisementService.php.html#103\">App\\Service\\AdvertisementService::getPaginatedListWithUnacceptedEntity<\/a>"],[100,1,"<a href=\"Service\/AdvertisementService.php.html#119\">App\\Service\\AdvertisementService::getPaginatedListWithAcceptedEntity<\/a>"],[100,1,"<a href=\"Service\/AdvertisementService.php.html#136\">App\\Service\\AdvertisementService::getPaginatedListByCategory<\/a>"],[100,1,"<a href=\"Service\/AdvertiserService.php.html#27\">App\\Service\\AdvertiserService::__construct<\/a>"],[100,1,"<a href=\"Service\/AdvertiserService.php.html#37\">App\\Service\\AdvertiserService::save<\/a>"],[100,1,"<a href=\"Service\/AdvertiserService.php.html#47\">App\\Service\\AdvertiserService::delete<\/a>"],[100,1,"<a href=\"Service\/AdvertiserService.php.html#57\">App\\Service\\AdvertiserService::advertiserEmailExists<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#44\">App\\Service\\CategoryService::__construct<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#56\">App\\Service\\CategoryService::save<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#66\">App\\Service\\CategoryService::delete<\/a>"],[50,2,"<a href=\"Service\/CategoryService.php.html#78\">App\\Service\\CategoryService::canBeDeleted<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#96\">App\\Service\\CategoryService::getPaginatedList<\/a>"],[100,1,"<a href=\"Service\/UserService.php.html#48\">App\\Service\\UserService::__construct<\/a>"],[100,1,"<a href=\"Service\/UserService.php.html#60\">App\\Service\\UserService::save<\/a>"],[0,2,"<a href=\"Service\/UserService.php.html#70\">App\\Service\\UserService::savePassword<\/a>"],[100,1,"<a href=\"Service\/UserService.php.html#84\">App\\Service\\UserService::getCurrentUser<\/a>"],[0,1,"<a href=\"Service\/UserService.php.html#97\">App\\Service\\UserService::hashPassword<\/a>"],[100,1,"<a href=\"Entity\/Enum\/UserRole.php.html#21\">App\\Entity\\Enum\\UserRole::label<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

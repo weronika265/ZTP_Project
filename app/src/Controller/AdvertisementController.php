@@ -100,10 +100,6 @@ class AdvertisementController extends AbstractController
     #[isGranted('VIEW', subject: 'advertisement')]
     public function show(Advertisement $advertisement): Response
     {
-        /*        if (false === $advertisement->isIsActive() && true === $this->isGranted('ROLE_ADMIN')) {
-                    $this->denyAccessUnlessGranted('ROLE_ADMIN');
-                }*/
-
         return $this->render(
             'advertisement/show.html.twig',
             ['advertisement' => $advertisement]

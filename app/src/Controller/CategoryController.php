@@ -151,8 +151,6 @@ class CategoryController extends AbstractController
     #[isGranted('EDIT', subject: 'category')]
     public function edit(Request $request, Category $category): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $form = $this->createForm(
             CategoryType::class,
             $category,
@@ -183,7 +181,6 @@ class CategoryController extends AbstractController
         );
     }
 
-    // ...
     /**
      * Delete action.
      *
@@ -196,8 +193,6 @@ class CategoryController extends AbstractController
     #[isGranted('DELETE', subject: 'category')]
     public function delete(Request $request, Category $category): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',

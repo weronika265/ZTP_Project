@@ -73,7 +73,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\AdvertiserController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor.",
             "url": "classes/App-Controller-AdvertiserController.html#method___construct"
         },                {
             "fqsen": "\\App\\Controller\\AdvertiserController\u003A\u003Acreate\u0028\u0029",
